@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block modulo_soporte %}
+  <div class="container py-4">
+    <!-- MENSAJES -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold">Módulo de Soporte</h2>
+
+      <a href="{% url 'aforo_silos:modulo_soporte_registro' %}" class="btn btn-primary">
+        <i class="bi bi-plus-circle me-2"></i>
+        Nuevo soporte
+      </a>
+    </div>
+
+    <!-- TABLA -->
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>#</th>
+                <th>Tipo</th>
+                <th>Comentarios</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Respuesta</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for registro in registros %}
+                <tr>
+                  <td>{{ forloop.counter }}</td>
+
+                  <td>
+                    <span class="fw-semibold">{{ registro.tipo_solicitud }}</span>
+                  </td>
+
+                  <td>{{ registro.comentarios|truncatechars:50 }}</td>
+
+                  <td>{{ registro.hora|date:'d/m/Y H:i' }}</td>
+
+                  <td>
+                    {% if registro.respuesta %}
+                      <span class="badge bg-success">Respondido</span>
+                    {% else %}
+                      <span class="badge bg-warning text-dark">Pendiente</span>
+                    {% endif %}
+                  </td>
+
+                  <td>
+                    {% if registro.respuesta %}
+                      {{ registro.respuesta }}
+                    {% else %}
+                      Sin respuesta.
+                    {% endif %}
+                  </td>
+                </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5" class="text-center text-muted py-4">No hay solicitudes de soporte registradas</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

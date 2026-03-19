@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block modulo_ver_registro %}
+  <div class="container py-4">
+    <!-- TÍTULO -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h2 class="fw-bold">Detalle del Registro</h2>
+      <a href="{% url 'aforo_silos:modulo_ver_registros' %}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-2"></i>
+        Volver
+      </a>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header bg-dark text-white">Información del Silo</div>
+
+      <div class="card-body">
+        <div class="row g-4">
+          <div class="col-md-3">
+            <label class="text-muted small">ID</label>
+            <div class="fw-semibold">{{ data_registro.id }}</div>
+          </div>
+
+          <!-- 🔥 NUEVO CAMPO -->
+          <div class="col-md-3">
+            <label class="text-muted small">Hora de Registro</label>
+            <div class="fw-semibold">
+              <i class="bi bi-clock me-1 text-primary"></i>
+              {{ data_registro.hora_registro|date:'d/m/Y H:i' }}
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Número de Silo</label>
+            <div class="fw-semibold">{{ data_registro.num_silo }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Altura</label>
+            <div class="fw-semibold">{{ data_registro.altura }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Densidad</label>
+            <div class="fw-semibold">{{ data_registro.densidad }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Volumen (Litros)</label>
+            <div class="fw-semibold">{{ data_registro.vol_litros }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Kilogramos Totales</label>
+            <div class="fw-semibold">{{ data_registro.kg_total }}</div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">% Llenado</label>
+            <div>
+              <span class="badge bg-success fs-6">{{ data_registro.porcentage_llenado }}%</span>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label class="text-muted small">Litros Disponibles</label>
+            <div class="fw-semibold">{{ data_registro.lts_disponibles }}</div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+        <!-- IMAGEN -->
+        <div class="text-center">
+          <h6 class="text-muted mb-3">Imagen Registrada</h6>
+
+          {% if data_registro.imagen %}
+            <img src="{{ data_registro.imagen.url }}" class="img-fluid rounded shadow" style="max-height: 300px;" />
+          {% else %}
+            <p class="text-muted">No hay imagen registrada</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block aforo_silos %}
+  {% load static %}
+
+  {% block styles_login %}
+    <link rel="stylesheet" href="{% static 'aforo_silos/css/vars.css' %}" />
+    <link rel="stylesheet" href="{% static 'aforo_silos/css/login.css' %}" />
+  {% endblock %}
+
+  <section class="container w-75">
+    <div class="contenedor_secundario row vh-100">
+      <aside class="aside_login col-md-6 d-flex flex-column justify-content-center align-items-center bg-light">
+        <div class="login_card p-4">
+          <!-- Encabezado -->
+          <div class="text-center mb-4">
+            <h1 class="fw-bold">AFORO DE SILOS</h1>
+            <p class="text-muted small mb-2">Sistema interno de control y monitoreo de silos en planta.</p>
+            <div class="divider mx-auto"></div>
+          </div>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <form action="login" method="post" class="d-flex flex-column gap-3">
+            {% csrf_token %}
+
+            <div class="inputs d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="icon_input">
+                <path fill="rgb(181,181,181)" d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z" />
+              </svg>
+              <input type="text" id="nombre" name="nombre" placeholder="Usuario" class="input_custom" />
+            </div>
+
+            <div class="inputs d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="icon_input">
+                <path fill="rgb(181,181,181)" d="M400 416C497.2 416 576 337.2 576 240C576 142.8 497.2 64 400 64C302.8 64 224 142.8 224 240C224 258.7 226.9 276.8 232.3 293.7L71 455C66.5 459.5 64 465.6 64 472L64 552C64 565.3 74.7 576 88 576L168 576C181.3 576 192 565.3 192 552L192 512L232 512C245.3 512 256 501.3 256 488L256 448L296 448C302.4 448 308.5 445.5 313 441L346.3 407.7C363.2 413.1 381.3 416 400 416z" />
+              </svg>
+              <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" class="input_custom" />
+            </div>
+
+            <button type="submit" class="btn_principal w-100 mt-2">Acceder al sistema</button>
+          </form>
+
+          <div class="text-center mt-4 small text-muted">
+            <p class="mb-1">Acceso exclusivo para personal autorizado.</p>
+            <p class="mb-0">Soporte técnico: tecnologia@colfrance.com.co</p>
+          </div>
+        </div>
+      </aside>
+
+      <aside class="aside_login_info col-md-6 d-flex flex-column justify-content-center align-items-center text-center">
+        <div>
+          <img class="logo_login" src="{% static 'images/colfrance.png' %}" alt="Logo" />
+          <h2 class="titulo_bgBlanco fw-bold mt-4">Alimentos Colfrance SAS</h2>
+          <p class="lead">Aplicación para el registro y control de silos en planta.</p>
+          <hr class="w-50 mx-auto" />
+          <p class="small">Desarrollo propio Colfrance © 2026</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endblock %}

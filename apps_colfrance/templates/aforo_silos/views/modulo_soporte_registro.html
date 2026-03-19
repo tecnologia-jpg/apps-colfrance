@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block modulo_soporte_registro %}
+
+<div class="container py-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Registrar Solicitud de Soporte</h4>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- TIPO DE SOLICITUD -->
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Solicitud</label>
+                    <select name="tipo_solicitud" class="form-select" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="Cambiar nombre">Cambiar nombre</option>
+                        <option value="Error en la aplicación">Error en la aplicación</option>
+                        <option value="Solicitar cambio de contraseña">Solicitar cambio de contraseña</option>
+                        <option value="Problema con registro de aforo">Problema con registro de aforo</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+
+                <!-- COMENTARIOS -->
+                <div class="mb-3">
+                    <label class="form-label">Comentarios</label>
+                    <textarea name="comentarios"
+                              class="form-control"
+                              rows="4"
+                              placeholder="Describe el problema con el mayor detalle posible..."
+                              required></textarea>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-send me-2"></i>
+                        Guardar Solicitud
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

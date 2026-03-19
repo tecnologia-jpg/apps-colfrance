@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block modulos %}
+  {% load static %}
+  {% block styles_modulos %}
+    <link rel="stylesheet" href="{% static 'aforo_silos/css/vars.css' %}" />
+    <link rel="stylesheet" href="{% static 'aforo_silos/css/login.css' %}" />
+  {% endblock %}
+
+  <main class="container mt-5">
+    <div class="row align-items-center mb-4">
+      <div class="col-md-8">
+        <h1 class="fw-bold mb-1">Panel de Control</h1>
+        <p class="text-muted mb-0">
+          Bienvenido {{ request.user.username }} |{% now 'd/m/Y H:i' %}
+        </p>
+      </div>
+      <div class="col-md-4 text-md-end">
+        <span class="badge bg-success px-3 py-2">Sistema Activo</span>
+        <a href="{% url 'aforo_silos:login' %}"><span class="badge bg-danger px-3 py-2">Cerrar Sesión</span></a>
+      </div>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-header bg-white border-0 pt-4 pb-0 text-center">
+        <h2 class="fw-semibold text-secondary">Módulos Disponibles</h2>
+      </div>
+
+      <div class="card-body p-4">
+        <form method="POST" class="row g-4 justify-content-center">
+          {% csrf_token %}
+
+          <div class="col-md-4 d-grid">
+            <button type="submit" name="modulo_registro" value="modulo_registro" class="btn_modulo_registro btn btn-success btn-lg py-4 rounded-4 shadow-sm">
+              <i class="bi bi-clipboard-data fs-2 d-block mb-2"></i>
+              <span class="fw-semibold">Registrar Aforo</span>
+              <div class="small mt-2">Crear nuevo cálculo de silo</div>
+            </button>
+          </div>
+
+          <div class="col-md-4 d-grid">
+            <button type="submit" name="modulo_ver_registros" value="modulo_ver_registros" class="btn_modulo_ver__registro btn btn-primary btn-lg py-4 rounded-4 shadow-sm">
+              <i class="bi bi-table fs-2 d-block mb-2"></i>
+              <span class="fw-semibold">Ver Registros</span>
+              <div class="small mt-2">Consultar historial almacenado</div>
+            </button>
+          </div>
+
+          <div class="col-md-4 d-grid">
+            <button type="submit" name="modulo_soporte" value="modulo_soporte" class="btn_modulo_soporte btn btn-lg text-dark py-4 rounded-4 shadow-sm">
+              <i class="bi bi-headset fs-2 d-block mb-2"></i>
+              <span class="fw-semibold">Soporte</span>
+              <div class="small mt-2">Reportar errores o solicitudes</div>
+            </button>
+          </div>
+        </form>
+      </div>
+      <hr />
+      <div class="card-footer bg-light border-0 text-center justify-content-center">
+        <img class="logo_silos p-0 m-0" src="{% static 'images/logoappsilos.png' %}" alt="Logo" /><br />
+        <small class="text-muted">Mas información: tecnologia@colfrance.com.co</small> <br />
+        <small class="text-muted">©{% now 'Y' %}APP Aforo de Silos | Todos los derechos reservados</small>
+      </div>
+    </div>
+  </main>
+{% endblock %}

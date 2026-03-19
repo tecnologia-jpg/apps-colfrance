@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block styles_modulo_registro %}
+  <link rel="stylesheet" href="{% static 'aforo_silos/css/vars.css' %}" />
+  <link rel="stylesheet" href="{% static 'aforo_silos/css/login.css' %}" />
+{% endblock %}
+
+{% block modulo_registro %}
+  <style>
+    .header_registro {
+      background: rgba(3, 68, 254);
+    }
+    
+    .botones_principal {
+      background: linear-gradient(45deg, #1aa8ff, #0053ff);
+      color: #ffff;
+      border: none;
+    }
+    .tabla_consulta {
+      background: linear-gradient(122deg, rgb(255, 149, 0), 60%, rgb(255, 85, 0));
+    }
+  </style>
+
+  <div class="container py-4">
+    <div class="mb-4 row justify-content-around">
+      <div class="col">
+        <h2 class="fw-bold">Registro de Aforo</h2>
+        <p class="text-muted">Seleccione un silo y registre los datos correspondientes</p>
+      </div>
+      <div class="col d-flex justify-content-end text-center align-content-center align-items-center">
+        <a href="{% url 'aforo_silos:modulo_ver_registros' %}" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left me-2"></i>
+          Volver
+        </a>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+      <div class="card-header header_registro text-white">Consulta de Silo</div>
+      <div class="card-body">
+        <form method="get" class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Seleccione el SILO</label>
+            <select name="silo" class="form-select" required>
+              <option value="">Seleccione un Silo</option>
+              {% for i in silos %}
+                <option value="SILO {{ i }}">Silo {{ i }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Altura registrada (CM)</label>
+            <input type="number" step="any" name="centimetros" class="form-control" required />
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Densidad</label>
+            <input type="number" step="any" name="densidad" class="form-control" required />
+          </div>
+
+          <div class="col-12 text-end">
+            <button type="submit" class="btn botones_principal">
+              <i class="bi bi-search me-2"></i>
+              Realizar consulta
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% if datos_consulta %}
+      <!-- RESULTADO DE CÁLCULO -->
+      <div class="card shadow-sm">
+        <div class="card-header tabla_consulta text-white">Datos Calculados</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" class="row g-3">
+            {% csrf_token %}
+
+            <div class="col-md-3">
+              <label class="form-label">SILO</label>
+              <input type="text" readonly class="form-control" name="silo" value="{{ datos_consulta.silo }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Centímetros</label>
+              <input type="number" step="any" readonly class="form-control" name="centimetros" value="{{ datos_consulta.centimetros }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Densidad</label>
+              <input type="number" step="any" readonly class="form-control" name="densidad" value="{{ datos_consulta.densidad }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Litros Calculados</label>
+              <input type="number" step="any" readonly class="form-control" name="litros_calculados" value="{{ datos_consulta.litros_calculados }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Total Kg</label>
+              <input type="number" step="any" readonly class="form-control" name="total_kg" value="{{ datos_consulta.total_kg }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Capacidad Silo</label>
+              <input type="number" step="any" readonly class="form-control" name="capacidad_silo" value="{{ datos_consulta.capacidad_silo }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">% Llenado</label>
+              <input type="number" step="any" readonly class="form-control" name="porcentaje_llenado" value="{{ datos_consulta.porcentaje_llenado }}" />
+            </div>
+
+            <div class="col-md-3">
+              <label class="form-label">Litros Disponibles</label>
+              <input type="number" step="any" readonly class="form-control" name="ltr_disponible" value="{{ datos_consulta.ltr_disponible }}" />
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Imagen</label>
+              <input type="file" name="imagen" class="form-control" accept="image/*" capture="environment" required />
+            </div>
+            <div class="col-12 text-end">
+              <button type="submit" class="btn botones_principal">
+                <i class="bi bi-save me-2"></i>
+                Registrar Información
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    {% endif %}
+
+    {% if mensaje %}
+      <div class="alert alert-success mt-4">{{ mensaje }}</div>
+    {% endif %}
+  </div>
+{% endblock %}
