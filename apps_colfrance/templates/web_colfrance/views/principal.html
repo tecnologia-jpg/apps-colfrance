@@ -1,0 +1,579 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colfrance - Productos Lácteos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --p: #0135e3;
+        --t: #18164b;
+        --color-t: #18164b;
+        --r: #e52a2d;
+        --s: #e3e3e3;
+        --w: #ffffff;
+        --ig: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);
+      }
+      body {
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        background-color: var(--w);
+        overflow-x: hidden;
+      }
+      /* Utilidades para reemplazar estilos en línea complejos */
+      .border-s {
+        border: 1.5px solid var(--s);
+      }
+      .text-t {
+        color: var(--t);
+      }
+      .text-p {
+        color: var(--p);
+      }
+      .text-r {
+        color: var(--r);
+      }
+      .bg-p {
+        background-color: var(--p);
+      }
+      .bg-t {
+        background-color: var(--t);
+      }
+      .bg-w {
+        background-color: var(--w);
+      }
+      .bg-ig {
+        background: var(--ig);
+      }
+      
+      /* Dropdown por CSS (Reemplaza el estado de React) */
+      .dropdown-content {
+        display: none;
+      }
+      .dropdown-container:hover .dropdown-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="py-1.5 bg-t">
+      <div class="max-w-6xl mx-auto px-5 flex justify-between items-center">
+        <p class="text-white text-[11px]">📞 +57 (601) 234-5678 &nbsp;·&nbsp; ✉️ pedidos@colfrance.com.co</p>
+        <p class="text-[11px] hidden sm:block" style="color: #6f6ea8;">Lun – Vie · 7am – 6pm</p>
+      </div>
+    </div>
+
+    <div class="sticky top-0 z-50 px-4 py-3 bg-w">
+      <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 h-14 rounded-2xl shadow-sm bg-w border-s">
+        <a href="#inicio" class="flex items-center gap-2.5">
+          <div class="w-20 h-20 flex items-center justify-center">
+            <img src="{% static 'images/colfrance.png' %}" alt="logo" onerror="this.style.display='none'" class="m-1" />
+          </div>
+          <div class="leading-none">
+            <p class="font-black text-sm tracking-widest text-p">COLFRANCE</p>
+            <p class="text-[9px] tracking-widest uppercase text-t">Productos Lácteos</p>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center gap-1 relative">
+          <a href="#inicio" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Inicio</a>
+
+          <div class="relative dropdown-container">
+            <button class="px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-1 transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Corporativo ▾</button>
+            <div class="absolute top-10 left-0 w-56 rounded-2xl shadow-xl p-2 z-50 bg-w border-s dropdown-content">
+              <a href="#nosotros" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Quiénes somos</a>
+              <a href="#nosotros" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Certificaciones</a>
+              <a href="#socios" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Aliados</a>
+            </div>
+          </div>
+
+          <a href="#productos" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Productos</a>
+          <a href="#nosotros" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Trabaja con Nosotros</a>
+        </div>
+
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#contacto" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all bg-p">Cotizar ahora</a>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden w-9 h-9 rounded-xl flex flex-col items-center justify-center gap-1 transition-colors">
+          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line1"></span>
+          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line2"></span>
+          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line3"></span>
+        </button>
+      </nav>
+
+      <div id="mobile-menu" class="hidden max-w-6xl mx-auto mt-2 rounded-2xl p-4 flex-col gap-1 shadow-lg bg-w border-s transition-all">
+        <a href="#inicio" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Inicio</a>
+        <a href="#productos" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Productos</a>
+        <a href="#nosotros" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Nosotros</a>
+        <a href="#contacto" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Contacto</a>
+      </div>
+    </div>
+
+    <section id="inicio" class="relative overflow-hidden" style="background: #f5f6ff;">
+      <div class="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full opacity-20 pointer-events-none" style="background: radial-gradient(circle, var(--p) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-0 -left-40 w-[350px] h-[350px] rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(circle, #f9436e 0%, transparent 70%);"></div>
+
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 pt-12 pb-32 grid md:grid-cols-2 gap-10 items-center">
+        <div class="relative z-10">
+          <div class="inline-flex items-center gap-2 text-sm font-bold px-4 py-2 rounded-full mb-6 text-white bg-ig">
+            <span class="text-base">🐄</span> Del campo colombiano a tu hogar
+          </div>
+          <h1 class="font-black leading-tight tracking-tight mb-5 text-t" style="font-size: clamp(2.8rem, 6vw, 4.2rem);">
+            Los mejores<br />
+            <span class="relative inline-block text-p">
+              lácteos<svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 220 10" fill="none">
+                <path d="M2 7 Q55 1 110 6 Q165 11 218 4" stroke="var(--r)" stroke-width="3.5" stroke-linecap="round" />
+              </svg>
+            </span><br />
+            <span class="text-t">de Colombia.</span>
+          </h1>
+          <p class="leading-relaxed mb-8 max-w-md" style="font-size: 1rem; color: #555;">Colfrance produce y distribuye leche, quesos, yogures, cremas y más, con certificación INVIMA y la frescura que merece tu familia.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#productos" class="flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-sm text-white hover:opacity-90 transition-all bg-p" style="box-shadow: 0 8px 24px #0135e344;">Ver productos <span>→</span></a>
+            <a href="#contacto" class="flex items-center gap-2 px-7 py-3.5 rounded-2xl font-bold text-sm hover:opacity-80 transition-all text-t border-s" style="background: var(--s);">Ser distribuidor</a>
+          </div>
+
+          <div class="flex flex-wrap gap-3 mt-8">
+            <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #0135e315; color: var(--p);">✅ INVIMA</span>
+            <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #18164b15; color: var(--t);">🌿 Sin conservantes</span>
+            <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #e52a2d15; color: var(--r);">❄️ Cadena de frío</span>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center">
+          <div class="absolute inset-0 rounded-full scale-75 opacity-15" style="background: radial-gradient(circle, var(--p), #f9436e);"></div>
+          <div class="relative w-[300px] h-[360px] md:w-[360px] md:h-[430px] rounded-[40px] overflow-hidden shadow-2xl z-10" style="border: 4px solid var(--w);">
+            <img src="{% static 'img/SMOOTHIE.png' %}" alt="Productos Colfrance" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1550583724-b2692b85b150?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600'" />
+          </div>
+
+          <div class="absolute left-0 top-16 z-20 bg-white rounded-2xl shadow-xl p-3 flex items-center gap-2.5 border-s bg-w">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0 bg-ig text-white">🐄</div>
+            <div>
+              <p class="font-black text-xs text-t">100% Natural</p>
+              <p class="text-[10px]" style="color: #aaa;">Sin aditivos</p>
+            </div>
+          </div>
+
+          <div class="absolute right-0 bottom-24 z-20 bg-white rounded-2xl shadow-xl p-3 flex items-center gap-2.5 border-s bg-w">
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center text-lg shrink-0 bg-ig text-white">🏆</div>
+            <div>
+              <p class="font-black text-xs text-t">Cert. INVIMA</p>
+              <p class="text-[10px]" style="color: #aaa;">Vigente 2026</p>
+            </div>
+          </div>
+
+          <div class="absolute right-8 top-8 z-20 bg-white rounded-2xl shadow-lg px-3.5 py-2 text-center border-s bg-w">
+            <p class="font-black text-lg text-r">30+</p>
+            <p class="text-[10px] tracking-widest uppercase" style="color: #aaa;">años</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 left-0 right-0 leading-none">
+        <svg viewBox="0 0 1440 90" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display: block; width: 100%;">
+          <path d="M0,60 C360,100 720,20 1080,60 C1260,80 1380,50 1440,60 L1440,90 L0,90 Z" fill="var(--w)" />
+        </svg>
+      </div>
+    </section>
+    {# --- BENEFICIOS / VALOR --- #}
+    <section class="py-16" style="background: white;">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {# Item #}
+          <div class="flex flex-col items-center text-center gap-3 p-5 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1" style="background: #f5f6ff; border: 1.5px solid var(--color-s);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl" style="background: var(--ig);">🌿</div>
+
+            <p class="font-black text-sm leading-tight" style="color: var(--color-t);">Sin conservantes</p>
+
+            <p class="text-xs leading-relaxed text-gray-500">Productos naturales sin aditivos artificiales.</p>
+          </div>
+
+          {# Item #}
+          <div class="flex flex-col items-center text-center gap-3 p-5 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1" style="background: #f5f6ff; border: 1.5px solid var(--color-s);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl" style="background: var(--ig);">🐄</div>
+
+            <p class="font-black text-sm leading-tight" style="color: var(--color-t);">Leche 100% fresca</p>
+
+            <p class="text-xs leading-relaxed text-gray-500">Directamente de nuestras ganaderías seleccionadas.</p>
+          </div>
+
+          {# Item #}
+          <div class="flex flex-col items-center text-center gap-3 p-5 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1" style="background: #f5f6ff; border: 1.5px solid var(--color-s);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl" style="background: var(--ig);">❄️</div>
+
+            <p class="font-black text-sm leading-tight" style="color: var(--color-t);">Cadena de frío</p>
+
+            <p class="text-xs leading-relaxed text-gray-500">Temperatura controlada desde el ordeño hasta tu puerta.</p>
+          </div>
+
+          {# Item #}
+          <div class="flex flex-col items-center text-center gap-3 p-5 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1" style="background: #f5f6ff; border: 1.5px solid var(--color-s);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl" style="background: var(--ig);">✅</div>
+
+            <p class="font-black text-sm leading-tight" style="color: var(--color-t);">Certificado INVIMA</p>
+
+            <p class="text-xs leading-relaxed text-gray-500">Cumplimos todos los estándares de calidad e higiene.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="socios" class="py-20 bg-w">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white bg-ig">🤝 Aliados comerciales</span>
+          <h2 class="font-black mb-2 text-t" style="font-size: clamp(2rem, 4vw, 2.8rem);">Nuestros <span class="text-p">socios</span></h2>
+          <p class="text-sm max-w-md mx-auto" style="color: #888;">Trabajamos con grandes cadenas y aliados estratégicos que confían en la calidad Colfrance.</p>
+        </div>
+
+        {% load static %}
+
+        <div class="flex flex-wrap justify-center gap-6">
+          {% for icon in icons_socios %}
+            <div class="w-[260px] flex items-center justify-center p-6 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1 border-s" style="background: #f5f6ff;">
+              <img src="{% static 'web_colfrance/icons/'|add:icon %}" alt="{{ icon }}" class="h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all" onerror="this.style.display='none'" />
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="text-center mt-12">
+          <p class="text-sm" style="color: #888;">
+            Más de <span class="text-p font-bold">500 clientes</span> y aliados en toda Colombia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="productos" class="py-20 relative overflow-hidden" style="background: #f5f6ff;">
+      <div class="absolute -right-24 top-20 w-72 h-72 rounded-full opacity-10 pointer-events-none" style="background: radial-gradient(circle, #f9436e, transparent);"></div>
+
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white bg-ig">🧺 Catálogo completo</span>
+          <h2 class="font-black leading-tight mb-3 text-t" style="font-size: clamp(2rem, 4vw, 3rem);">Nuestros <span class="text-p">productos</span></h2>
+          <p class="max-w-md mx-auto text-sm leading-relaxed" style="color: #888;">Frescos, naturales y certificados. De la ganadería colombiana directamente a tu mesa.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-container">
+          {% for categoria in categorias %}
+            <button onclick="filterProducts('{{ categoria }}', this)" class="filter-btn px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200 border-s bg-w text-t" data-cat="{{ c }}">{{ categoria }}</button>
+          {% endfor %}
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="products-grid">
+          {% for producto in productos %}
+            <div class="product-card group flex flex-col rounded-3xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl bg-w border-s" data-category="{{ p.cat }}" style="box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+              <div class="relative overflow-hidden" style="background: {{ p.bg }}; height: 200px;">
+                <img src="{{ producto.imagen }}" alt="{{ producto.name }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
+                <div class="absolute top-3 right-3 w-9 h-9 rounded-xl flex items-center justify-center text-lg shadow-sm bg-ig text-white">
+                  {% if producto.categoria == 1 %}
+                    🥛
+                  {% elif producto.categoria == 2 %}
+                    🧀
+                  {% elif producto.categoria == 3 %}
+                    🍶
+                  {% else %}
+                    🥛
+                  {% endif %}
+                </div> <div class="absolute bottom-0 left-0 right-0 h-16" style="background: linear-gradient(to top, rgba(24,22,75,0.3), transparent);"></div>
+                <span class="absolute bottom-3 left-3 text-[10px] font-bold px-2.5 py-1 rounded-full text-white bg-p">{{ producto.categoria }}</span>
+              </div>
+
+              <div class="p-5 flex flex-col flex-1">
+                <h3 class="font-black mb-1.5 text-t" style="font-size: 1rem;">{{ producto.nombre }}</h3>
+                <p class="text-xs leading-relaxed flex-1" style="color: #888;">{{ producto.descripcion }}</p>
+
+                <div class="flex items-center gap-2 mt-4 pt-3 border-t border-dashed" style="border-top-width: 1.5px; border-top-color: var(--color-s);">
+                  <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-ig text-white">⚖️</span>
+                  <span class="text-xs font-semibold" style="color: #888;">{{ p.pres }} $5.000</span>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-20 leading-none"></div>
+    </section>
+
+    <section id="nosotros" class="py-20 bg-w">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid md:grid-cols-2 gap-14 items-center">
+          <div class="relative">
+            <div class="absolute -top-4 -left-4 w-full h-full rounded-[40px] opacity-30 bg-ig"></div>
+            <div class="relative rounded-[36px] overflow-hidden shadow-2xl">
+              <img src="{% static 'images/imagen_pagina.jpg' %}" alt="Ganadería Colfrance" class="w-full h-[400px] md:h-[480px] object-cover" onerror="this.src='https://images.unsplash.com/photo-1596700870845-f483c74994df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=600'" />
+            </div>
+            <div class="absolute -bottom-5 -right-3 rounded-2xl shadow-xl p-4 text-center bg-w border-s">
+              <p class="font-black text-2xl text-p">500+</p>
+              <p class="text-xs tracking-widest uppercase" style="color: #aaa;">Clientes</p>
+            </div>
+          </div>
+
+          <div>
+            <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 px-4 py-1.5 rounded-full text-white bg-ig">🌾 Quiénes somos</span>
+            <h2 class="font-black leading-tight mb-5 text-t" style="font-size: clamp(2rem, 4vw, 2.8rem);">
+              Tradición láctea<br />
+              <span class="text-p">con sabor colombiano</span>
+            </h2>
+            <p class="text-sm leading-relaxed mb-4" style="color: #555;">Desde 2004, Colfrance trabaja directamente con ganaderos colombianos para producir lácteos frescos, naturales y certificados...</p>
+
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="rounded-2xl p-4 border-s" style="background: #f5f6ff;">
+                <p class="font-black text-2xl text-p">20+</p>
+                <p class="text-xs mt-0.5" style="color: #888;">Años de experiencia</p>
+              </div>
+              <div class="rounded-2xl p-4 border-s" style="background: #f5f6ff;">
+                <p class="font-black text-2xl text-t">50+</p>
+                <p class="text-xs mt-0.5" style="color: #888;">Productos en línea</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {# --- CTA DISTRIBUIDORES --- #}
+    <section class="relative overflow-hidden" style="background: #f5f6ff;">
+      {# Ola superior (igual estilo que hero) #}
+      <div class="leading-none">
+        <svg viewBox="0 0 1440 70" class="w-full">
+          <path d="M0,35 C480,0 960,70 1440,35 L1440,0 L0,0 Z" fill="white" />
+        </svg>
+      </div>
+
+      <div class="py-20 px-5">
+        <div class="max-w-4xl mx-auto text-center relative overflow-hidden rounded-[40px] px-10 py-14 shadow-xl" style="background: var(--color-t);">
+          {# blobs decorativos coherentes con tu diseño #}
+          <div class="absolute -top-12 -right-12 w-56 h-56 rounded-full opacity-10" style="background: #0135E3;"></div>
+
+          <div class="absolute -bottom-10 -left-10 w-40 h-40 rounded-full opacity-20" style="background: var(--ig);"></div>
+
+          <div class="relative">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-5 text-white" style="background: var(--ig);">🚚 Red de distribuidores</span>
+
+            <h2 class="font-black text-white leading-tight mb-4 text-3xl md:text-4xl">
+              ¿Querés vender<br />
+              <span style="color: var(--color-r);">Colfrance</span> en tu región?
+            </h2>
+
+            <p class="text-sm leading-relaxed mb-8 max-w-md mx-auto" style="color: #a5a3d6;">Planes especiales para mayoristas, tiendas y supermercados. Te asesoramos sin ningún compromiso.</p>
+
+            <div class="flex flex-wrap justify-center gap-3">
+              <a href="#contacto" class="px-8 py-3.5 rounded-2xl font-bold text-sm transition-all shadow-lg hover:scale-105" style="background: white; color: var(--color-t);">Contactar asesor →</a>
+
+              <a href="https://wa.me/573156789012" class="px-8 py-3.5 rounded-2xl font-bold text-sm transition-all hover:scale-105" style="background: rgba(255,255,255,0.08); color: white; border: 1.5px solid rgba(255,255,255,0.2);">💬 WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Ola inferior coherente con el fondo #}
+      <div class="leading-none">
+        <svg viewBox="0 0 1440 70" class="w-full">
+          <path d="M0,35 C480,70 960,0 1440,35 L1440,70 L0,70 Z" fill="#f5f6ff" />
+        </svg>
+      </div>
+    </section>
+    <section id="contacto" class="py-20" style="background: #f5f6ff;">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white bg-ig">✉️ Escríbenos</span>
+          <h2 class="font-black mb-2 text-t" style="font-size: clamp(2rem, 4vw, 2.8rem);">Hablemos <span class="text-p">hoy</span></h2>
+          <p class="text-sm max-w-sm mx-auto" style="color: #888;">Un asesor Colfrance te responderá en menos de 24 horas.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-5 gap-10">
+          <div class="lg:col-span-2 space-y-4">
+            <div class="flex gap-4 items-start p-4 rounded-2xl border-s bg-w">
+              <div class="w-11 h-11 rounded-2xl flex items-center justify-center text-xl shrink-0 bg-ig text-white">📍</div>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-widest mb-0.5 text-r">Dirección</p>
+                <p class="text-sm" style="color: #555;">Capellanía - Cundinamarca</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="rounded-3xl p-8 bg-w border-s" style="box-shadow: 0 8px 40px rgba(0,0,0,0.05);">
+              <form method="POST" action="" class="space-y-4" onsubmit="handleForm(event)">
+                {% csrf_token %}
+                <div id="form-content">
+                  <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Nombre *</label>
+                      <input required type="text" name="name" placeholder="Tu nombre completo" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Email *</label>
+                      <input required type="email" name="email" placeholder="tu@email.com" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                    </div>
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Teléfono</label>
+                    <input type="tel" name="phone" placeholder="+57 300 000 0000" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Mensaje *</label>
+                    <textarea required name="msg" rows="4" placeholder="¿En qué podemos ayudarte?" class="w-full text-sm px-4 py-3 rounded-2xl outline-none resize-none transition-all border-s text-t" style="background: #f5f6ff;"></textarea>
+                  </div>
+                  <button type="submit" class="w-full py-3.5 mt-4 rounded-2xl font-bold text-sm text-white flex items-center justify-center gap-2 hover:opacity-90 transition-all bg-p" style="box-shadow: 0 6px 20px #0135e344;">Enviar mensaje 🚀</button>
+                </div>
+
+                <div id="success-message" class="hidden flex-col items-center justify-center py-16 text-center">
+                  <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-ig text-white">🎉</div>
+                  <h4 class="font-black text-xl mb-2 mt-4 text-t">¡Mensaje enviado!</h4>
+                  <p class="text-sm max-w-xs" style="color: #888;">Gracias por contactarnos. Un asesor te responderá muy pronto.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-t">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12" data-fg-d3bl370="0.8:51.31885:/src/app/App.tsx:719:9:44639:3017:e:div:ete" data-fgid-d3bl370=":raj:">
+        <div class="grid md:grid-cols-4 gap-10 mb-10" data-fg-d3bl371="0.8:51.31885:/src/app/App.tsx:720:11:44704:2362:e:div:etete" data-fgid-d3bl371=":rak:">
+          <div class="md:col-span-2" data-fg-d3bl372="0.8:51.31885:/src/app/App.tsx:721:13:44767:1262:e:div:etete" data-fgid-d3bl372=":ral:">
+            <div class="flex items-center gap-2.5 mb-4" data-fg-d3bl373="0.8:51.31885:/src/app/App.tsx:722:15:44813:540:e:div:ete" data-fgid-d3bl373=":ram:">
+              <div class="w-9 h-9 rounded-xl flex items-center justify-center" data-fg-d3bl374="0.8:51.31885:/src/app/App.tsx:723:17:44878:194:e:div:e" data-fgid-d3bl374=":ran:" style="background: rgb(1, 53, 227);">
+                <span class="text-white font-black text-sm" data-fg-d3bl375="0.8:51.31885:/src/app/App.tsx:724:19:44992:57:e:span:t" data-fgid-d3bl375=":rao:">CF</span>
+              </div>
+              <div data-fg-d3bl377="0.8:51.31885:/src/app/App.tsx:726:17:45089:243:e:div:ete" data-fgid-d3bl377=":rap:">
+                <p class="font-black tracking-widest text-sm text-white" data-fg-d3bl378="0.8:51.31885:/src/app/App.tsx:727:19:45113:74:e:p:t" data-fgid-d3bl378=":raq:">COLFRANCE</p>
+                <p class="text-[9px] tracking-[0.3em] uppercase" data-fg-d3bl380="0.8:51.31885:/src/app/App.tsx:728:19:45206:103:e:p:t" data-fgid-d3bl380=":rar:" style="color: rgb(111, 110, 168);">Lácteos Naturales</p>
+              </div>
+            </div>
+            <p class="text-sm leading-relaxed max-w-xs mb-5" data-fg-d3bl382="0.8:51.31885:/src/app/App.tsx:731:15:45368:216:e:p:t" data-fgid-d3bl382=":ras:" style="color: rgb(111, 110, 168);">Lácteos frescos y naturales del campo colombiano. Calidad, tradición y sabor auténtico desde 2004.</p>
+            <div class="flex gap-2" data-fg-d3bl384="0.8:51.31885:/src/app/App.tsx:734:15:45599:411:e:div:x" data-fgid-d3bl384=":rat:">
+              <button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rau:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">Instagram</button><button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rav:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">Facebook</button><button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rb0:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">WhatsApp</button>
+            </div>
+          </div>
+          <div data-fg-d3bl388="0.8:51.31885:/src/app/App.tsx:741:13:46042:448:e:div:ete" data-fgid-d3bl388=":rb1:">
+            <p class="text-xs font-bold uppercase tracking-widest mb-4" data-fg-d3bl389="0.8:51.31885:/src/app/App.tsx:742:15:46062:98:e:p:t" data-fgid-d3bl389=":rb2:" style="color: rgb(227, 227, 227);">Productos</p>
+            <ul class="space-y-2" data-fg-d3bl391="0.8:51.31885:/src/app/App.tsx:743:15:46175:296:e:ul:x" data-fgid-d3bl391=":rb3:">
+              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb4:">
+                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb5:" style="color: rgb(111, 110, 168);">Leches</a>
+              </li>
+              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb6:">
+                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb7:" style="color: rgb(111, 110, 168);">Quesos</a>
+              </li>
+              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb8:">
+                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb9:" style="color: rgb(111, 110, 168);">Yogures</a>
+              </li>
+              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rba:">
+                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rbb:" style="color: rgb(111, 110, 168);">Cremas</a>
+              </li>
+              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rbc:">
+                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rbd:" style="color: rgb(111, 110, 168);">Dulces</a>
+              </li>
+            </ul>
+          </div>
+          <div data-fg-d3bl396="0.8:51.31885:/src/app/App.tsx:749:13:46503:546:e:div:ete" data-fgid-d3bl396=":rbe:">
+            <p class="text-xs font-bold uppercase tracking-widest mb-4" data-fg-d3bl397="0.8:51.31885:/src/app/App.tsx:750:15:46523:96:e:p:t" data-fgid-d3bl397=":rbf:" style="color: rgb(227, 227, 227);">Empresa</p>
+            <ul class="space-y-2" data-fg-d3bl399="0.8:51.31885:/src/app/App.tsx:751:15:46634:396:e:ul:x" data-fgid-d3bl399=":rbg:">
+              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbh:">
+                <a href="#nosotros" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbi:" style="color: rgb(111, 110, 168);">Nosotros</a>
+              </li>
+              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbj:">
+                <a href="#nosotros" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbk:" style="color: rgb(111, 110, 168);">Certificaciones</a>
+              </li>
+              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbl:">
+                <a href="#contacto" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbm:" style="color: rgb(111, 110, 168);">Distribuidores</a>
+              </li>
+              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbn:">
+                <a href="#contacto" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbo:" style="color: rgb(111, 110, 168);">Contacto</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" data-fg-d3bl404="0.8:51.31885:/src/app/App.tsx:758:11:47077:564:e:div:ete" data-fgid-d3bl404=":rbp:" style="border-top: 1px solid rgba(255, 255, 255, 0.08);">
+          <p class="text-xs" data-fg-d3bl405="0.8:51.31885:/src/app/App.tsx:759:13:47231:132:e:p:t" data-fgid-d3bl405=":rbq:" style="color: rgb(61, 60, 110);">© 2026 Colfrance Lácteos · NIT 900.123.456-7 · Todos los derechos reservados</p>
+          <div class="flex gap-4" data-fg-d3bl407="0.8:51.31885:/src/app/App.tsx:760:13:47376:248:e:div:x" data-fgid-d3bl407=":rbr:">
+            <a href="#" class="text-xs hover:text-white transition-colors" data-fg-d3bl409="0.8:51.31885:/src/app/App.tsx:762:17:47476:111:e:a:x" data-fgid-d3bl409=":rbs:" style="color: rgb(61, 60, 110);">Privacidad</a><a href="#" class="text-xs hover:text-white transition-colors" data-fg-d3bl409="0.8:51.31885:/src/app/App.tsx:762:17:47476:111:e:a:x" data-fgid-d3bl409=":rbt:" style="color: rgb(61, 60, 110);">Términos</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 1. Filtrado de Productos (reemplaza el `const filtered` de React)
+      function filterProducts(category, btnElement) {
+        const products = document.querySelectorAll('.product-card')
+        const buttons = document.querySelectorAll('.filter-btn')
+      
+        // Actualizar botones (estilos activos/inactivos)
+        buttons.forEach((btn) => {
+          if (btn === btnElement) {
+            btn.style.background = 'var(--p)'
+            btn.style.color = 'var(--w)'
+            btn.style.boxShadow = '0 4px 16px #0135e344'
+          } else {
+            btn.style.background = 'var(--w)'
+            btn.style.color = 'var(--t)'
+            btn.style.boxShadow = 'none'
+          }
+        })
+      
+        // Mostrar/Ocultar productos
+        products.forEach((p) => {
+          if (category === 'Todos' || p.dataset.category === category) {
+            p.style.display = 'flex'
+          } else {
+            p.style.display = 'none'
+          }
+        })
+      }
+      
+      // Simular click en "Todos" al iniciar
+      document.querySelector('.filter-btn[data-cat="Todos"]').click()
+      
+      // 2. Menú Móvil (reemplaza `setOpenMenu` de React)
+      const menuBtn = document.getElementById('mobile-menu-btn')
+      const mobileMenu = document.getElementById('mobile-menu')
+      const mobileLinks = document.querySelectorAll('.mobile-link')
+      
+      function toggleMenu() {
+        const isHidden = mobileMenu.classList.contains('hidden')
+        if (isHidden) {
+          mobileMenu.classList.remove('hidden')
+          mobileMenu.classList.add('flex')
+          menuBtn.style.background = '#edf0ff'
+        } else {
+          mobileMenu.classList.add('hidden')
+          mobileMenu.classList.remove('flex')
+          menuBtn.style.background = 'transparent'
+        }
+      }
+      
+      menuBtn.addEventListener('click', toggleMenu)
+      mobileLinks.forEach((link) =>
+        link.addEventListener('click', () => {
+          if (!mobileMenu.classList.contains('hidden')) toggleMenu()
+        })
+      )
+      
+      // 3. Formulario simulado (reemplaza `handleSend` de React)
+      // Nota: En Django real, probablemente enviarías el form y recargarías,
+      // o usarías Fetch API. Aquí simulo el comportamiento que tenías.
+      function handleForm(e) {
+        // Si quieres enviar los datos a Django sin recargar usa fetch()
+        // Por ahora, solo simularé el mensaje visual:
+        e.preventDefault()
+        document.getElementById('form-content').classList.add('hidden')
+        document.getElementById('success-message').classList.remove('hidden')
+        document.getElementById('success-message').classList.add('flex')
+      
+        setTimeout(() => {
+          e.target.reset()
+          document.getElementById('success-message').classList.add('hidden')
+          document.getElementById('success-message').classList.remove('flex')
+          document.getElementById('form-content').classList.remove('hidden')
+        }, 5000)
+      }
+    </script>
+  </body>
+</html>
