@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-nl!dhb&2l6jbbut+j4fc(foi0(&%(e(kx97sx6s1$o3s4px)*+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["colf-app-service-g0ftatgqgdfjd7d0.eastus2-01.azurewebsites.net"]
 
 # Configuracion de logueo
 LOGIN_REDIRECT_URL = "aforo_silos:modulos"
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "apps_colfrance.urls"
