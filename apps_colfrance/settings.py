@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+
 import os
 
 
@@ -26,11 +27,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-nl!dhb&2l6jbbut+j4fc(foi0(&%(e(kx97sx6s1$o3s4px)*+"
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ("DEBUG_STATUS")
 ALLOWED_HOSTS = ["*"]
 
 # Configuracion de logueo
@@ -88,10 +89,27 @@ WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# database SQL LOCAL
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+
+# database AZURE
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": os.environ("USER"),  # usuario de AZURE
+        "PASSWORD": os.environ("PASSWORD"),
+        "HOST": os.environ("HOST"),
+        "PORT": os.environ("PORT"),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
 
