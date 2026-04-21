@@ -31,12 +31,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ("DEBUG_STATUS")
-ALLOWED_HOSTS = [
-    'colf-app-service.azurewebsites.net', 
-    'localhost', 
-    '127.0.0.1'
-]
+DEBUG = False
+ALLOWED_HOSTS = ["colf-app-service.azurewebsites.net", "localhost", "127.0.0.1"]
 
 # Configuracion de logueo
 LOGIN_REDIRECT_URL = "aforo_silos:modulos"
