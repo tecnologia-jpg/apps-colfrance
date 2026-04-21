@@ -33,7 +33,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["colf-app-service.azurewebsites.net", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 # Configuracion de logueo
 LOGIN_REDIRECT_URL = "aforo_silos:modulos"
