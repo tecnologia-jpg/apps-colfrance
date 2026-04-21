@@ -32,6 +32,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+
 ALLOWED_HOSTS = ["colf-app-service.azurewebsites.net", "localhost", "127.0.0.1"]
 
 # Configuracion de logueo
@@ -103,10 +104,10 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
-        "USER": os.environ("USER"),  # usuario de AZURE
-        "PASSWORD": os.environ("PASSWORD"),
-        "HOST": os.environ("HOST"),
-        "PORT": os.environ("PORT"),
+        "USER": os.environ.get("USER"),  # usuario de AZURE
+        "PASSWORD": os.environ.get("PASSWORD"),
+        "HOST": os.environ.get("HOST"),
+        "PORT": os.environ.get("PORT"),
         "OPTIONS": {
             "sslmode": "require",
         },
