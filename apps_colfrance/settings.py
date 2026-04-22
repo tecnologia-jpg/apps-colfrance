@@ -28,10 +28,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
+# SECRET_KEY = "django-insecure-nl!dhb&2l6jbbut+j4fc(foi0(&%(e(kx97sx6s1$o3s4px)*+"
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -94,7 +95,7 @@ WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
+#         "NAME": BASE_DIR / ".enviroment/db.sqlite3",
 #     }
 # }
 
