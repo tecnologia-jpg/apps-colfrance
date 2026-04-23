@@ -108,7 +108,7 @@ DATABASES = {
         "USER": os.environ.get("USER"),  # usuario de AZURE
         "PASSWORD": os.environ.get("PASSWORD"),
         "HOST": os.environ.get("HOST"),
-        "PORT": os.environ.get("PORT"),
+        "PORT": 5432,
         "OPTIONS": {
             "sslmode": "require",
         },
