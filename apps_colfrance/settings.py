@@ -99,8 +99,7 @@ WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 #     }
 # }
 
-
-# database AZURE
+# Ajustes pre configurados de labase de datos de postgresql AZURE
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
