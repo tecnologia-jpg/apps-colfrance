@@ -92,6 +92,7 @@ WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
+        ##Ajustes de Nombre
         "NAME": "postgres",
         "USER": os.environ.get("DB_USER"),  # usuario de AZURE
         "PASSWORD": os.environ.get("DB_PASSWORD"),
