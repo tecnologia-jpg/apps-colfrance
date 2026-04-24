@@ -32,9 +32,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
+
+# codigo de verificaciones de formulario
+CSRF_TRUSTED_ORIGINS = [
+    "https://colf-app-service-g0ftatgqgdfjd7d0.eastus2-01.azurewebsites.net",
+]
 
 # Configuracion de logueo
 LOGIN_REDIRECT_URL = "aforo_silos:modulos"
@@ -144,8 +149,9 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "apps_colfrance" / "static",
 ]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

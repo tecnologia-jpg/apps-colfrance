@@ -11,7 +11,7 @@ RUTA_ACTUAL = Path(__file__).resolve()
 # print(ruta_actual)
 RUTA_PADRE = RUTA_ACTUAL.parent
 # print(ruta_padre)
-RUTA_ARCHIVO = RUTA_PADRE / "staticfiles" / "docs" / "programa_silos_maestro.xlsx"
+RUTA_ARCHIVO = RUTA_PADRE / "static" / "docs" / "programa_silos_maestro.xlsx"
 # print(RUTA_ARCHIVO)
 PATH_TEMPLATES_SILOS = "aforo_silos/views/"
 # print(RUTA_ARCHIVO)
