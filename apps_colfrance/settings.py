@@ -88,7 +88,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 
 
-
 # Ajustes pre configurados de labase de datos de postgresql AZURE
 DATABASES = {
     "default": {
@@ -100,6 +99,7 @@ DATABASES = {
         "PORT": 5432,
         "OPTIONS": {
             "sslmode": "require",
+            "options": "-c search_path=public,pg_catalog",
         },
     }
 }
