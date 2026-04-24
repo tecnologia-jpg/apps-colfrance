@@ -93,9 +93,9 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
-        "USER": os.environ.get("USER"),  # usuario de AZURE
-        "PASSWORD": os.environ.get("PASSWORD"),
-        "HOST": os.environ.get("HOST"),
+        "USER": os.environ.get("DB_USER"),  # usuario de AZURE
+        "PASSWORD": os.environ.get("DB_PASSWORD"),
+        "HOST": os.environ.get("DB_HOST"),
         "PORT": 5432,
         "OPTIONS": {
             "sslmode": "require",
