@@ -88,16 +88,6 @@ TEMPLATES = [
 WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# database SQL LOCAL
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / ".enviroment/db.sqlite3",
-#     }
-# }
 
 # Ajustes pre configurados de labase de datos de postgresql AZURE
 DATABASES = {
