@@ -32,9 +32,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["colf-app-service-g0ftatgqgdfjd7d0.eastus2-01.azurewebsites.net"]
 
 # Configuracion de logueo
 LOGIN_REDIRECT_URL = "aforo_silos:modulos"
@@ -99,7 +99,6 @@ DATABASES = {
         "PORT": 5432,
         "OPTIONS": {
             "sslmode": "require",
-            "options": "-c search_path=public,pg_catalog",
         },
     }
 }
