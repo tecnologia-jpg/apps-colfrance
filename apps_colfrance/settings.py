@@ -28,8 +28,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
-# SECRET_KEY = "django-insecure-nl!dhb&2l6jbbut+j4fc(foi0(&%(e(kx97sx6s1$o3s4px)*+"
-SECRET_KEY = os.environ.get("SECRET_KEY")
+
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -93,7 +93,15 @@ TEMPLATES = [
 WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 
 
-# Ajustes pre configurados de labase de datos de postgresql AZURE
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         # "NAME": BASE_DIR / ".enviroment/db.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+# # Ajustes pre configurados de labase de datos de postgresql AZURE
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -149,6 +157,7 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     BASE_DIR / "apps_colfrance" / "static",
 ]
+
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

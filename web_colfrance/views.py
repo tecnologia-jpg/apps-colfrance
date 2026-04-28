@@ -20,7 +20,7 @@ RUTA_PADRE = RUTA_ACTUAL.parent
 # print(ruta_padre)
 
 # print(RUTA_ARCHIVO)
-PATH_TEMPLATES_SILOS = "web_colfrance/views/"
+PATH_TEMPLATES_WEB = "web_colfrance/views/"
 # print(RUTA_ARCHIVO)
 
 # Create your views here.
@@ -29,10 +29,13 @@ PATH_TEMPLATES_SILOS = "web_colfrance/views/"
 def principal(request):
     context = {}
     categorias = Categoria.objects.all()
-    context["categorias"] = categorias
     productos = Producto.objects.all()
-    context["productos"] = productos
-    print(context["productos"][1].__dict__)
-    context["icons_socios"] = recuperar_imagenes_socios()
-    print(context["icons_socios"])
-    return render(request, f"{PATH_TEMPLATES_SILOS}principal.html", context=context)
+    if productos and categorias:
+        context["categorias"] = categorias
+        context["productos"] = productos
+        print(context["productos"][1].__dict__)
+        context["icons_socios"] = recuperar_imagenes_socios()
+        print(context["icons_socios"])
+        return render(request, f"{PATH_TEMPLATES_WEB}principal.html", context=context)
+    else:
+        return render(request, f"{PATH_TEMPLATES_WEB}principal.html", context=context)

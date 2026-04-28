@@ -1,0 +1,18 @@
+:root {
+    --bgAzul: linear-gradient(122deg, rgb(0 196 255), 60%, rgb(0 55 255));
+    --bgNaranja: linear-gradient(122deg, rgb(255, 149, 0), 60%, rgb(255, 85, 0));
+    --color--botonresPrincipal: linear-gradient(45deg, #1aa8ff, #0053ff);
+    --color--azul: #002cd3;
+    --color--azuDegradado: rgba(3, 68, 254);
+    --color--texInformativo: rgba(230, 46, 47);
+    --color--title--primario: rgb(14, 59, 162);
+    --color--title--secundario: rgb(94, 94, 94);
+    --color--textobgbazul: rgb(255, 255, 255);
+    --color--tittlebgbazul: rgb(255, 255, 255);
+
+
+
+    --color--moduloRegistro: rgb(14, 37, 93);
+    --color--moduloVerRegistro: #0840c5;
+    --color--moduloSoporte: #0668ff;
+}
