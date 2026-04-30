@@ -28,7 +28,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 
-# SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -47,8 +47,8 @@ LOGIN_URL = "login"
 
 
 # Application definition
- 
- 
+
+
 # Reajustes en Entorno limpio
 INSTALLED_APPS = [
     "django.contrib.admin",
