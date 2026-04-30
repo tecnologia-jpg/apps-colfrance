@@ -47,7 +47,7 @@ LOGIN_URL = "login"
 
 
 # Application definition
-
+# Reajustes en Entorno limpio
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
