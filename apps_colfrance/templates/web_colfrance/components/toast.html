@@ -1,0 +1,14 @@
+<div class="toast toast-{{ tipo }}">
+    
+    <span>
+        {% if tipo == "success" %}✔
+        {% elif tipo == "danger" or tipo == "error" %}✖
+        {% elif tipo == "warning" %}⚠
+        {% else %}ℹ
+        {% endif %}
+        {{ mensaje }}
+    </span>
+
+    <button onclick="closeToast(this)">✖</button>
+
+</div>

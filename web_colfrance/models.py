@@ -22,7 +22,8 @@ class Producto(models.Model):
 
 class Contacto(models.Model):
     nombre = models.CharField(max_length=100)
-    email = models.EmailField()
+    correo = models.EmailField()
+    telefono = models.CharField(max_length=20)
     asunto = models.CharField(max_length=100)
     mensaje = models.TextField()
     fecha_envio = models.DateTimeField(auto_now_add=True)

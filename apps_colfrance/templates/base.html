@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>app colfrance</title>
     <link rel="stylesheet" href="{% static 'aforo_silos/css/vars.css' %}" />
+
     {% block styles_login %}
 
     {% endblock %}
@@ -59,5 +60,31 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    {% comment %}Script de funcionalidad del toast{% endcomment %}
+    <script>
+      // Auto cerrar en 4s
+      setTimeout(() => {
+        document.querySelectorAll('.toast').forEach((toast) => {
+          hideToast(toast)
+        })
+      }, 4000)
+      
+      function closeToast(btn) {
+        const toast = btn.parentElement
+        hideToast(toast)
+      }
+      
+      function hideToast(toast) {
+        if (toast.classList.contains('hiding')) return // evita doble ejecución
+      
+        toast.classList.add('hiding')
+        toast.style.animation = 'toast-out 0.5s ease forwards'
+      
+        setTimeout(() => {
+          toast.remove()
+        }, 500)
+      }
+    </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Producto
+from .models import Categoria, Producto, Contacto
 
 # Register your models here.
 
@@ -21,5 +21,12 @@ class ProductoAdmin(admin.ModelAdmin):
         "imagen",
         "tabla_nutricional",
     )
+    search_fields = ("nombre",)
+    list_filter = ("nombre",)
+
+
+@admin.register(Contacto)
+class ContactoAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "correo", "asunto", "mensaje", "fecha_envio")
     search_fields = ("nombre",)
     list_filter = ("nombre",)

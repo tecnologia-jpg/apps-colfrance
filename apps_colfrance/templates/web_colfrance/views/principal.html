@@ -7,6 +7,81 @@
     <title>Colfrance - Productos Lácteos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      @keyframes toast-in {
+        from {
+          opacity: 0;
+          transform: translateX(120%) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+      
+      @keyframes toast-out {
+        from {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: translateX(40px) scale(0.95);
+        }
+      }
+      
+      .toast {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-width: 260px;
+        max-width: 320px;
+        padding: 12px 16px;
+        border-radius: 10px;
+        background: var(--w);
+        color: var(--color-t);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        animation: toast-in 0.4s ease;
+        border-left: 5px solid var(--toast-color);
+        gap: 10px;
+        font-size: 14px;
+      }
+      
+      /* Tipos */
+      .toast-success {
+        --toast-color: var(--p);
+      }
+      
+      .toast-danger,
+      .toast-error {
+        --toast-color: var(--r);
+      }
+      
+      .toast-warning {
+        border-left: 5px solid transparent;
+        background-image: linear-gradient(var(--w), var(--w)), var(--ig);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+      }
+      
+      .toast-info {
+        --toast-color: var(--t);
+      }
+      
+      .toast button {
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        font-size: 16px;
+        color: var(--color-t);
+        opacity: 0.7;
+        transition: 0.2s;
+      }
+      
+      .toast button:hover {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      
       :root {
         --p: #0135e3;
         --t: #18164b;
@@ -43,7 +118,7 @@
       .bg-w {
         background-color: var(--w);
       }
-      .bg-ig {-/erw
+      .bg-ig {
         background: var(--ig);
       }
       
@@ -57,6 +132,16 @@
     </style>
   </head>
   <body>
+    {% if messages %}
+      <div id="toast-container" class="fixed top-5 right-5 z-[9999] space-y-3">
+        {% for message in messages %}
+          {% with mensaje=message tipo=message.tags %}
+            {% include 'web_colfrance/components/toast.html' %}
+          {% endwith %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
     <div class="py-1.5 bg-t">
       <div class="max-w-6xl mx-auto px-5 flex justify-between items-center">
         <p class="text-white text-[11px]">📞 +57 (601) 234-5678 &nbsp;·&nbsp; ✉️ pedidos@colfrance.com.co</p>
@@ -378,8 +463,9 @@
                   <p class="text-xs leading-relaxed flex-1" style="color: #888;">{{ producto.descripcion }}</p>
 
                   <div class="flex items-center gap-2 mt-4 pt-3 border-t border-dashed" style="border-top-width: 1.5px; border-top-color: var(--color-s);">
-                    <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-ig text-white">⚖️</span>
-                    <span class="text-xs font-semibold" style="color: #888;">{{ p.pres }} $5.000</span>
+                    {% comment %}Pendiente para pasarela de pago{% endcomment %}
+                    {% comment %} <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs bg-ig text-white">⚖️</span>
+                    <span class="text-xs font-semibold" style="color: #888;">{{ p.pres }} $5.000</span> {% endcomment %}
                   </div>
                 </div>
               </div>
@@ -456,26 +542,30 @@
 
           <div class="lg:col-span-3">
             <div class="rounded-3xl p-8 bg-w border-s" style="box-shadow: 0 8px 40px rgba(0,0,0,0.05);">
-              <form method="POST" action="" class="space-y-4" onsubmit="handleForm(event)">
+              <form method="POST" action="{% url 'web_colfrance:cargar_datos_contacto' %}" class="space-y-4">
                 {% csrf_token %}
                 <div id="form-content">
                   <div class="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Nombre *</label>
-                      <input required type="text" name="name" placeholder="Tu nombre completo" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                      <input required type="text" name="nombre" placeholder="Tu nombre completo" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
                     </div>
                     <div>
                       <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Email *</label>
-                      <input required type="email" name="email" placeholder="tu@email.com" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                      <input required type="email" name="correo" placeholder="tu@email.com" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
                     </div>
                   </div>
                   <div>
                     <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Teléfono</label>
-                    <input type="tel" name="phone" placeholder="+57 300 000 0000" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                    <input type="tel" name="telefono" placeholder="+57 300 000 0000" class="w-full text-sm px-4 py-3 rounded-2xl outline-none transition-all border-s text-t" style="background: #f5f6ff;" />
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Asunto</label>
+                    <textarea required name="asunto" rows="4" placeholder="¿En que te ayudamos?" class="w-full text-sm px-4 py-3 rounded-2xl outline-none resize-none transition-all border-s text-t" style="background: #f5f6ff;"></textarea>
                   </div>
                   <div>
                     <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-t">Mensaje *</label>
-                    <textarea required name="msg" rows="4" placeholder="¿En qué podemos ayudarte?" class="w-full text-sm px-4 py-3 rounded-2xl outline-none resize-none transition-all border-s text-t" style="background: #f5f6ff;"></textarea>
+                    <textarea required name="mensaje" rows="4" placeholder="Queremos saber mas detalles." class="w-full text-sm px-4 py-3 rounded-2xl outline-none resize-none transition-all border-s text-t" style="background: #f5f6ff;"></textarea>
                   </div>
                   <button type="submit" class="w-full py-3.5 mt-4 rounded-2xl font-bold text-sm text-white flex items-center justify-center gap-2 hover:opacity-90 transition-all bg-p" style="box-shadow: 0 6px 20px #0135e344;">Enviar mensaje 🚀</button>
                 </div>
@@ -631,6 +721,32 @@
           document.getElementById('success-message').classList.remove('flex')
           document.getElementById('form-content').classList.remove('hidden')
         }, 5000)
+      }
+    </script>
+
+    {% comment %}Script de funcionalidad del toast{% endcomment %}
+    <script>
+      // Auto cerrar en 4s
+      setTimeout(() => {
+        document.querySelectorAll('.toast').forEach((toast) => {
+          hideToast(toast)
+        })
+      }, 4000)
+      
+      function closeToast(btn) {
+        const toast = btn.parentElement
+        hideToast(toast)
+      }
+      
+      function hideToast(toast) {
+        if (toast.classList.contains('hiding')) return // evita doble ejecución
+      
+        toast.classList.add('hiding')
+        toast.style.animation = 'toast-out 0.5s ease forwards'
+      
+        setTimeout(() => {
+          toast.remove()
+        }, 500)
       }
     </script>
   </body>
