@@ -1,0 +1,81 @@
+{% load static %}
+<footer style="background: {{ background_color|default:'#1a1a2e' }};">
+  <div class="leading-none">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display: block; width: 100%;">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,0 L0,0 Z" fill="#f5f6ff" />
+    </svg>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12">
+    <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="{% static 'images/colfrance.png' %}" alt="Colfrance" class="h-12 w-auto object-contain" />
+          <div>
+            <p class="font-black tracking-widest text-sm text-white">COLFRANCE</p>
+            <p class="text-[9px] tracking-[0.2em] uppercase italic font-semibold" style="color: {{ accent_color|default:'#ff0000' }}">Colfrance sí sabe</p>
+          </div>
+        </div>
+        <p class="text-sm leading-relaxed max-w-xs mb-5" style="color: #6f6ea8">Cuarenta años de historia láctea del campo colombiano. Calidad, tradición y sabor auténtico en cada producto.</p>
+        <p class="text-xs mb-3" style="color: #6f6ea8">📍 Ubaté-Chiquinquirá, Fúquene, Cundinamarca</p>
+
+        <div class="flex gap-2">
+          {% for social in social_links %}
+            <a href="{{ social.url }}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" style="background: rgba(255,255,255,0.08); color: #8887be; border: 1px solid rgba(255,255,255,0.12)">
+              <span>{{ social.icon_safe|safe }}</span>
+              <span class="hidden sm:inline">{{ social.label }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: {{ title_color|default:'#ffffff' }}">Navegación</p>
+        <ul class="space-y-2">
+          <li>
+            {% comment %}Pendiente{% endcomment %}
+            <a href="" class="text-sm hover:text-white transition-colors" style="color: #6f6ea8">Inicio</a>
+          </li>
+          <li>
+            {% comment %}Pendiente{% endcomment %}
+            <a href="" class="text-sm hover:text-white transition-colors" style="color: #6f6ea8">Productos</a>
+          </li>
+          <li>
+            {% comment %}Pendiente{% endcomment %}
+            <a href="" class="text-sm hover:text-white transition-colors" style="color: #6f6ea8">Nosotros</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: {{ title_color|default:'#ffffff' }}">Contacto</p>
+        <ul class="space-y-2.5">
+          <li>
+            <p class="text-xs font-semibold" style="color: #6f6ea8">📞 018005185247</p>
+            <p class="text-[10px]" style="color: #3d3c6e">Línea gratuita</p>
+          </li>
+          <li>
+            <p class="text-xs font-semibold" style="color: #6f6ea8">📱 310 296 4696</p>
+            <p class="text-[10px]" style="color: #3d3c6e">Celular / WhatsApp</p>
+          </li>
+          <li>
+            <p class="text-xs font-semibold" style="color: #6f6ea8">✉️ pedidos@colfrance.com.co</p>
+            <p class="text-[10px]" style="color: #3d3c6e">Pedidos</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style="border-top: 1px solid rgba(255,255,255,0.08)">
+      <p class="text-xs" style="color: #3d3c6e">© 2026 Colfrance · Cuarenta años de historia láctea colombiana · Todos los derechos reservados</p>
+      <div class="flex gap-4">
+        {% comment %}Pendiente{% endcomment %}
+        <a href="" class="text-xs hover:text-white transition-colors" style="color: #3d3c6e">Privacidad</a>
+        {% comment %}Pendiente{% endcomment %}
+        <a href="" class="text-xs hover:text-white transition-colors" style="color: #3d3c6e">Términos</a>
+        {% comment %}Pendiente{% endcomment %}
+        <a href="" class="text-xs hover:text-white transition-colors" style="color: #3d3c6e">PQR</a>
+      </div>
+    </div>
+  </div>
+</footer>

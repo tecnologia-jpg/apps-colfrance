@@ -142,59 +142,8 @@
       </div>
     {% endif %}
 
-    <div class="py-1.5 bg-t">
-      <div class="max-w-6xl mx-auto px-5 flex justify-between items-center">
-        <p class="text-white text-[11px]">📞 +57 (601) 234-5678 &nbsp;·&nbsp; ✉️ pedidos@colfrance.com.co</p>
-        <p class="text-[11px] hidden sm:block" style="color: #6f6ea8;">Lun – Vie · 7am – 6pm</p>
-      </div>
-    </div>
-
-    <div class="sticky top-0 z-50 px-4 py-3 bg-w">
-      <nav class="max-w-6xl mx-auto flex items-center justify-between px-5 h-14 rounded-2xl shadow-sm bg-w border-s">
-        <a href="#inicio" class="flex items-center gap-2.5">
-          <div class="w-20 h-20 flex items-center justify-center">
-            <img src="{% static 'images/colfrance.png' %}" alt="logo" onerror="this.style.display='none'" class="m-1" />
-          </div>
-          <div class="leading-none">
-            <p class="font-black text-sm tracking-widest text-p">COLFRANCE</p>
-            <p class="text-[9px] tracking-widest uppercase text-t">Productos Lácteos</p>
-          </div>
-        </a>
-
-        <div class="hidden md:flex items-center gap-1 relative">
-          <a href="#inicio" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Inicio</a>
-
-          <div class="relative dropdown-container">
-            <button class="px-4 py-2 rounded-xl text-sm font-medium flex items-center gap-1 transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Corporativo ▾</button>
-            <div class="absolute top-10 left-0 w-56 rounded-2xl shadow-xl p-2 z-50 bg-w border-s dropdown-content">
-              <a href="#nosotros" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Quiénes somos</a>
-              <a href="#nosotros" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Certificaciones</a>
-              <a href="#socios" class="block px-4 py-2 rounded-xl text-sm transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Aliados</a>
-            </div>
-          </div>
-
-          <a href="#productos" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Productos</a>
-          <a href="#nosotros" class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-t hover:bg-[#edf0ff] hover:text-[#0135e3]">Trabaja con Nosotros</a>
-        </div>
-
-        <div class="hidden md:flex items-center gap-3">
-          <a href="#contacto" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all bg-p">Cotizar ahora</a>
-        </div>
-
-        <button id="mobile-menu-btn" class="md:hidden w-9 h-9 rounded-xl flex flex-col items-center justify-center gap-1 transition-colors">
-          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line1"></span>
-          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line2"></span>
-          <span class="block w-5 h-0.5 rounded-full bg-p transition-all" id="line3"></span>
-        </button>
-      </nav>
-
-      <div id="mobile-menu" class="hidden max-w-6xl mx-auto mt-2 rounded-2xl p-4 flex-col gap-1 shadow-lg bg-w border-s transition-all">
-        <a href="#inicio" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Inicio</a>
-        <a href="#productos" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Productos</a>
-        <a href="#nosotros" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Nosotros</a>
-        <a href="#contacto" class="px-4 py-3 rounded-xl text-sm font-medium transition-all text-t mobile-link">Contacto</a>
-      </div>
-    </div>
+    {% comment %}BARRA DE NAVEGACION{% endcomment %}
+    {% include 'web_colfrance/components/navbar.html' %}
 
     <section id="inicio" class="relative overflow-hidden bg-cover bg-center bg-no-repeat" style="background-image: url('{% static 'images/baner.png' %}');">
       <!-- ✅ OVERLAY (solo afecta el fondo, no el contenido) -->
@@ -272,78 +221,6 @@
         </svg>
       </div>
     </section>
-    <section id="nosotros" class="py-24 relative overflow-hidden bg-w">
-      <!-- DECORACIONES -->
-      <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-10" style="background: radial-gradient(circle, var(--p), transparent);"></div>
-
-      <div class="absolute bottom-0 -left-32 w-80 h-80 rounded-full opacity-10" style="background: radial-gradient(circle, #f97316, transparent);"></div>
-
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
-        <!-- HEADER -->
-        <div class="text-center mb-16">
-          <span class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.25em] uppercase mb-4 px-5 py-2 rounded-full text-white shadow-md" style="background: linear-gradient(135deg, #ff7a18, #ffb347);">🌾 Nosotros</span>
-
-          <h2 class="font-black leading-tight text-t mb-4" style="font-size: clamp(2.4rem, 5vw, 3.2rem);">
-            Pasión por lo <span class="text-p">natural</span><br />
-            <span style="background: linear-gradient(135deg, #ff7a18, #ffb347);
-                     -webkit-background-clip: text;
-                     -webkit-text-fill-color: transparent;">tradición colombiana</span>
-          </h2>
-
-          <p class="max-w-xl mx-auto text-sm leading-relaxed" style="color:#666;">Más que una empresa, somos una conexión directa entre el campo colombiano y tu mesa.</p>
-        </div>
-
-        <!-- CONTENIDO -->
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-          <!-- IMAGEN -->
-          <div class="relative">
-            <div class="absolute -top-6 -left-6 w-full h-full rounded-[40px] opacity-30" style="background: var(--ig);"></div>
-
-            <div class="relative rounded-[36px] overflow-hidden shadow-2xl">
-              <img src="{% static 'images/imagen_pagina.jpg' %}" class="w-full h-[420px] md:h-[500px] object-cover" />
-            </div>
-
-            <!-- BADGE EXPERIENCIA -->
-            <div class="absolute -bottom-6 -right-4 bg-w rounded-2xl shadow-xl px-5 py-3 border-s">
-              <p class="font-black text-2xl text-p">20+</p>
-              <p class="text-xs tracking-widest uppercase text-gray-400">Años</p>
-            </div>
-          </div>
-
-          <!-- TEXTO -->
-          <div>
-            <h3 class="font-black text-2xl mb-4 text-t">Comprometidos con calidad, frescura y origen</h3>
-
-            <p class="text-sm leading-relaxed mb-6" style="color:#555;">Desde 2004, Colfrance trabaja de la mano con productores colombianos, garantizando procesos responsables, productos frescos y una cadena de frío impecable.</p>
-
-            <p class="text-sm leading-relaxed mb-8" style="color:#555;">Nuestro compromiso es ofrecer alimentos confiables, naturales y con el sabor auténtico que caracteriza al campo colombiano.</p>
-
-            <!-- CARDS -->
-            <div class="grid grid-cols-2 gap-4">
-              <div class="p-5 rounded-3xl border-s bg-[#f5f6ff] hover:shadow-lg transition-all">
-                <p class="font-black text-2xl text-p">500+</p>
-                <p class="text-xs text-gray-500 mt-1">Clientes activos</p>
-              </div>
-
-              <div class="p-5 rounded-3xl border-s bg-[#fff4ec] hover:shadow-lg transition-all">
-                <p class="font-black text-2xl" style="color:#f97316;">50+</p>
-                <p class="text-xs text-gray-500 mt-1">Productos</p>
-              </div>
-
-              <div class="p-5 rounded-3xl border-s bg-[#eef2ff] hover:shadow-lg transition-all">
-                <p class="font-black text-2xl text-t">100%</p>
-                <p class="text-xs text-gray-500 mt-1">Natural</p>
-              </div>
-
-              <div class="p-5 rounded-3xl border-s bg-[#fff1f2] hover:shadow-lg transition-all">
-                <p class="font-black text-2xl text-r">INVIMA</p>
-                <p class="text-xs text-gray-500 mt-1">Certificado</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     {# --- BENEFICIOS / VALOR --- #}
     <section class="py-16" style="background: white;">
       <div class="max-w-6xl mx-auto px-5 sm:px-8">
@@ -384,36 +261,6 @@
 
             <p class="text-xs leading-relaxed text-gray-500">Cumplimos todos los estándares de calidad e higiene.</p>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="socios" class="py-20 bg-w">
-      <div class="max-w-6xl mx-auto px-5 sm:px-8">
-        <div class="text-center mb-12">
-          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 px-4 py-1.5 rounded-full text-white bg-gradient-to-r from-orange-500 via-orange-400 to-amber-400 shadow-md">🤝 Aliados comerciales</span>
-          <h2 class="font-black mb-2 text-t" style="font-size: clamp(2rem, 4vw, 2.8rem);">Nuestros <span class="text-p">socios</span></h2>
-          <p class="text-sm max-w-md mx-auto" style="color: #888;">Trabajamos con grandes cadenas y aliados estratégicos que confían en la calidad Colfrance.</p>
-        </div>
-
-        {% load static %}
-
-        <div class="flex flex-wrap justify-center gap-6">
-          {% if icons_socios %}
-            {% for icon in icons_socios %}
-              <div class="w-[260px] flex items-center justify-center p-6 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1 border-s" style="background: #f5f6ff;">
-                <img src="{% static 'web_colfrance/icons/'|add:icon %}" alt="{{ icon }}" class="h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all" onerror="this.style.display='none'" />
-              </div>
-            {% endfor %}
-          {% else %}
-            <h1>No se encuentran socios</h1>
-          {% endif %}
-        </div>
-
-        <div class="text-center mt-12">
-          <p class="text-sm" style="color: #888;">
-            Más de <span class="text-p font-bold">500 clientes</span> y aliados en toda Colombia.
-          </p>
         </div>
       </div>
     </section>
@@ -474,9 +321,105 @@
             <h1>No existen productos</h1>
           {% endif %}
         </div>
+        <div class="mt-10 text-center">
+          <a href="" class="inline-flex items-center gap-3 px-10 py-4 rounded-2xl font-bold text-sm text-white hover:opacity-90 transition-all shadow-lg" style="background-color: #0135e3; box-shadow: 0px 8px 28px rgba(1, 53, 227, 0.27);">
+            <span>🧺</span>
+            Mostrar más productos
+            <span>→</span>
+          </a>
+
+          <p class="text-xs mt-3 text-[#aaaaaa]">Ver los 8 productos del catálogo completo</p>
+        </div>
       </div>
 
       <div class="mt-20 leading-none"></div>
+    </section>
+
+    <section id="nosotros" class="py-20" style="background-color: #ffffff;">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="grid md:grid-cols-2 gap-14 items-center">
+          <div class="relative">
+            <div class="absolute -top-4 -left-4 w-full h-full rounded-[40px] opacity-30" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);"></div>
+
+            <div class="relative rounded-[36px] overflow-hidden shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1618080206739-14e8ac105472?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=900" alt="Ganadería Colfrance" class="w-full h-[400px] md:h-[480px] object-cover" />
+            </div>
+
+            <div class="absolute -bottom-5 -right-3 bg-white rounded-2xl shadow-xl p-4 text-center" style="border: 1.5px solid #e3e3e3;">
+              <p class="font-black text-2xl" style="color: #0135e3;">500+</p>
+              <p class="text-xs tracking-widest uppercase" style="color: #aaaaaa;">Clientes</p>
+            </div>
+          </div>
+
+          <div>
+            <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 px-4 py-1.5 rounded-full text-white" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">🌾 Quiénes somos</span>
+
+            <h2 class="font-black leading-tight mb-5" style="font-size: clamp(2rem, 4vw, 2.8rem); color: #18164b;">
+              Tradición láctea<br />
+              <span style="color: #0135e3;">con sabor colombiano</span>
+            </h2>
+
+            <p class="text-sm leading-relaxed mb-6" style="color: #555555;">Una empresa que complace los paladares de toda la familia. Cuarenta años de historia que inician en las manos trabajadoras de nuestros campesinos y que, bajo los estándares de calidad, es tratada y procesada convirtiéndola en productos que se comparten con amor y felicidad a los hogares en cada rincón del país.</p>
+
+            <div class="grid grid-cols-2 gap-4 mb-8">
+              <div class="rounded-2xl p-4" style="background: #f5f6ff; border: 1.5px solid #e3e3e3;">
+                <p class="font-black text-2xl" style="color: #0135e3;">40+</p>
+                <p class="text-xs mt-0.5" style="color: #888888;">Años de experiencia</p>
+              </div>
+              <div class="rounded-2xl p-4" style="background: #f5f6ff; border: 1.5px solid #e3e3e3;">
+                <p class="font-black text-2xl" style="color: #18164b;">50+</p>
+                <p class="text-xs mt-0.5" style="color: #888888;">Productos en línea</p>
+              </div>
+              <div class="rounded-2xl p-4" style="background: #f5f6ff; border: 1.5px solid #e3e3e3;">
+                <p class="font-black text-2xl" style="color: #e52a2d;">500+</p>
+                <p class="text-xs mt-0.5" style="color: #888888;">Clientes activos</p>
+              </div>
+              <div class="rounded-2xl p-4" style="background: #f5f6ff; border: 1.5px solid #e3e3e3;">
+                <p class="font-black text-2xl" style="color: #0135e3;">100%</p>
+                <p class="text-xs mt-0.5" style="color: #888888;">Leche colombiana</p>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(1, 53, 227, 0.08); color: #0135e3;">✅ INVIMA</span>
+              <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(24, 22, 75, 0.08); color: #18164b;">🏭 BPM</span>
+              <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(229, 42, 45, 0.08); color: #e52a2d;">📋 ISO 9001</span>
+              <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(1, 53, 227, 0.08); color: #0135e3;">🌿 Sin conservantes</span>
+            </div>
+
+            <a href="" class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl font-bold text-sm hover:opacity-90 transition-all w-fit" style="background: rgba(1, 53, 227, 0.07); color: #0135e3;">Conocer misión, visión y políticas →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="socios" class="py-20 bg-w">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-4 px-4 py-1.5 rounded-full text-white bg-gradient-to-r from-orange-500 via-orange-400 to-amber-400 shadow-md">🤝 Aliados comerciales</span>
+          <h2 class="font-black mb-2 text-t" style="font-size: clamp(2rem, 4vw, 2.8rem);">Nuestros <span class="text-p">socios</span></h2>
+          <p class="text-sm max-w-md mx-auto" style="color: #888;">Trabajamos con grandes cadenas y aliados estratégicos que confían en la calidad Colfrance.</p>
+        </div>
+
+        {% load static %}
+
+        <div class="flex flex-wrap justify-center gap-6">
+          {% if icons_socios %}
+            {% for icon in icons_socios %}
+              <div class="w-[260px] flex items-center justify-center p-6 rounded-3xl transition-all hover:shadow-lg hover:-translate-y-1 border-s" style="background: #f5f6ff;">
+                <img src="{% static 'web_colfrance/icons/'|add:icon %}" alt="{{ icon }}" class="h-12 object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all" onerror="this.style.display='none'" />
+              </div>
+            {% endfor %}
+          {% else %}
+            <h1>No se encuentran socios</h1>
+          {% endif %}
+        </div>
+
+        <div class="text-center mt-12">
+          <p class="text-sm" style="color: #888;">
+            Más de <span class="text-p font-bold">500 clientes</span> y aliados en toda Colombia.
+          </p>
+        </div>
+      </div>
     </section>
 
     {# --- CTA DISTRIBUIDORES --- #}
@@ -582,70 +525,7 @@
       </div>
     </section>
 
-    <footer class="bg-t">
-      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-12" data-fg-d3bl370="0.8:51.31885:/src/app/App.tsx:719:9:44639:3017:e:div:ete" data-fgid-d3bl370=":raj:">
-        <div class="grid md:grid-cols-4 gap-10 mb-10" data-fg-d3bl371="0.8:51.31885:/src/app/App.tsx:720:11:44704:2362:e:div:etete" data-fgid-d3bl371=":rak:">
-          <div class="md:col-span-2" data-fg-d3bl372="0.8:51.31885:/src/app/App.tsx:721:13:44767:1262:e:div:etete" data-fgid-d3bl372=":ral:">
-            <div class="flex items-center gap-2.5 mb-4" data-fg-d3bl373="0.8:51.31885:/src/app/App.tsx:722:15:44813:540:e:div:ete" data-fgid-d3bl373=":ram:">
-              <div class="w-9 h-9 rounded-xl flex items-center justify-center" data-fg-d3bl374="0.8:51.31885:/src/app/App.tsx:723:17:44878:194:e:div:e" data-fgid-d3bl374=":ran:" style="background: rgb(1, 53, 227);">
-                <span class="text-white font-black text-sm" data-fg-d3bl375="0.8:51.31885:/src/app/App.tsx:724:19:44992:57:e:span:t" data-fgid-d3bl375=":rao:">CF</span>
-              </div>
-              <div data-fg-d3bl377="0.8:51.31885:/src/app/App.tsx:726:17:45089:243:e:div:ete" data-fgid-d3bl377=":rap:">
-                <p class="font-black tracking-widest text-sm text-white" data-fg-d3bl378="0.8:51.31885:/src/app/App.tsx:727:19:45113:74:e:p:t" data-fgid-d3bl378=":raq:">COLFRANCE</p>
-                <p class="text-[9px] tracking-[0.3em] uppercase" data-fg-d3bl380="0.8:51.31885:/src/app/App.tsx:728:19:45206:103:e:p:t" data-fgid-d3bl380=":rar:" style="color: rgb(111, 110, 168);">Lácteos Naturales</p>
-              </div>
-            </div>
-            <p class="text-sm leading-relaxed max-w-xs mb-5" data-fg-d3bl382="0.8:51.31885:/src/app/App.tsx:731:15:45368:216:e:p:t" data-fgid-d3bl382=":ras:" style="color: rgb(111, 110, 168);">Lácteos frescos y naturales del campo colombiano. Calidad, tradición y sabor auténtico desde 2004.</p>
-            <div class="flex gap-2" data-fg-d3bl384="0.8:51.31885:/src/app/App.tsx:734:15:45599:411:e:div:x" data-fgid-d3bl384=":rat:">
-              <button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rau:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">Instagram</button><button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rav:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">Facebook</button><button class="text-[11px] font-semibold px-3 py-1.5 rounded-xl hover:opacity-80 transition-colors" data-fg-d3bl386="0.8:51.31885:/src/app/App.tsx:736:19:45714:255:e:button:x" data-fgid-d3bl386=":rb0:" style="background: rgba(255, 255, 255, 0.08); color: rgb(136, 135, 190); border: 1px solid rgba(255, 255, 255, 0.12);">WhatsApp</button>
-            </div>
-          </div>
-          <div data-fg-d3bl388="0.8:51.31885:/src/app/App.tsx:741:13:46042:448:e:div:ete" data-fgid-d3bl388=":rb1:">
-            <p class="text-xs font-bold uppercase tracking-widest mb-4" data-fg-d3bl389="0.8:51.31885:/src/app/App.tsx:742:15:46062:98:e:p:t" data-fgid-d3bl389=":rb2:" style="color: rgb(227, 227, 227);">Productos</p>
-            <ul class="space-y-2" data-fg-d3bl391="0.8:51.31885:/src/app/App.tsx:743:15:46175:296:e:ul:x" data-fgid-d3bl391=":rb3:">
-              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb4:">
-                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb5:" style="color: rgb(111, 110, 168);">Leches</a>
-              </li>
-              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb6:">
-                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb7:" style="color: rgb(111, 110, 168);">Quesos</a>
-              </li>
-              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rb8:">
-                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rb9:" style="color: rgb(111, 110, 168);">Yogures</a>
-              </li>
-              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rba:">
-                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rbb:" style="color: rgb(111, 110, 168);">Cremas</a>
-              </li>
-              <li data-fg-d3bl393="0.8:51.31885:/src/app/App.tsx:745:19:46302:129:e:li:e" data-fgid-d3bl393=":rbc:">
-                <a href="#productos" class="text-sm hover:text-white transition-colors" data-fg-d3bl394="0.8:51.31885:/src/app/App.tsx:745:31:46314:112:e:a:x" data-fgid-d3bl394=":rbd:" style="color: rgb(111, 110, 168);">Dulces</a>
-              </li>
-            </ul>
-          </div>
-          <div data-fg-d3bl396="0.8:51.31885:/src/app/App.tsx:749:13:46503:546:e:div:ete" data-fgid-d3bl396=":rbe:">
-            <p class="text-xs font-bold uppercase tracking-widest mb-4" data-fg-d3bl397="0.8:51.31885:/src/app/App.tsx:750:15:46523:96:e:p:t" data-fgid-d3bl397=":rbf:" style="color: rgb(227, 227, 227);">Empresa</p>
-            <ul class="space-y-2" data-fg-d3bl399="0.8:51.31885:/src/app/App.tsx:751:15:46634:396:e:ul:x" data-fgid-d3bl399=":rbg:">
-              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbh:">
-                <a href="#nosotros" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbi:" style="color: rgb(111, 110, 168);">Nosotros</a>
-              </li>
-              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbj:">
-                <a href="#nosotros" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbk:" style="color: rgb(111, 110, 168);">Certificaciones</a>
-              </li>
-              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbl:">
-                <a href="#contacto" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbm:" style="color: rgb(111, 110, 168);">Distribuidores</a>
-              </li>
-              <li data-fg-d3bl401="0.8:51.31885:/src/app/App.tsx:753:19:46870:120:e:li:e" data-fgid-d3bl401=":rbn:">
-                <a href="#contacto" class="text-sm hover:text-white transition-colors" data-fg-d3bl402="0.8:51.31885:/src/app/App.tsx:753:31:46882:103:e:a:x" data-fgid-d3bl402=":rbo:" style="color: rgb(111, 110, 168);">Contacto</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" data-fg-d3bl404="0.8:51.31885:/src/app/App.tsx:758:11:47077:564:e:div:ete" data-fgid-d3bl404=":rbp:" style="border-top: 1px solid rgba(255, 255, 255, 0.08);">
-          <p class="text-xs" data-fg-d3bl405="0.8:51.31885:/src/app/App.tsx:759:13:47231:132:e:p:t" data-fgid-d3bl405=":rbq:" style="color: rgb(61, 60, 110);">© 2026 Colfrance Lácteos · NIT 900.123.456-7 · Todos los derechos reservados</p>
-          <div class="flex gap-4" data-fg-d3bl407="0.8:51.31885:/src/app/App.tsx:760:13:47376:248:e:div:x" data-fgid-d3bl407=":rbr:">
-            <a href="#" class="text-xs hover:text-white transition-colors" data-fg-d3bl409="0.8:51.31885:/src/app/App.tsx:762:17:47476:111:e:a:x" data-fgid-d3bl409=":rbs:" style="color: rgb(61, 60, 110);">Privacidad</a><a href="#" class="text-xs hover:text-white transition-colors" data-fg-d3bl409="0.8:51.31885:/src/app/App.tsx:762:17:47476:111:e:a:x" data-fgid-d3bl409=":rbt:" style="color: rgb(61, 60, 110);">Términos</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    {% include 'web_colfrance/components/footer.html' %}
 
     <script>
       // 1. Filtrado de Productos (reemplaza el `const filtered` de React)
@@ -749,5 +629,35 @@
         }, 500)
       }
     </script>
+    <script>
+      function toggleMenu(btn) {
+        var wrapper = document.getElementById('mobile-menu-wrapper')
+        var lines = btn.querySelectorAll('.line')
+        var isOpen = btn.classList.toggle('is-open')
+      
+        // Animación del botón Hamburgesa
+        btn.style.background = isOpen ? '#edf0ff' : 'transparent'
+        lines[0].style.transform = isOpen ? 'rotate(45deg) translate(2px,4px)' : 'none'
+        lines[1].style.opacity = isOpen ? '0' : '1'
+        lines[2].style.transform = isOpen ? 'rotate(-45deg) translate(2px,-4px)' : 'none'
+      
+        // Animación fluida de despliegue
+        if (isOpen) {
+          wrapper.style.visibility = 'visible'
+          wrapper.style.gridTemplateRows = '1fr'
+          wrapper.style.opacity = '1'
+        } else {
+          wrapper.style.gridTemplateRows = '0fr'
+          wrapper.style.opacity = '0'
+      
+          // Esperamos a que termine la animación antes de ocultar el elemento por completo
+          setTimeout(function () {
+            if (!btn.classList.contains('is-open')) {
+              wrapper.style.visibility = 'hidden'
+            }
+          }, 300)
+        }
+      }
+    </script>x
   </body>
 </html>

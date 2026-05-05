@@ -1,0 +1,219 @@
+{% load static %}
+
+{# Definición de "Contexto" envolviendo todo el Header y Navbar #}
+{% with P='#1a1a2e' R='#e11d48' W='#ffffff' S='#edf0ff' T='#18164b' %}
+  <div class="py-1.5" style="background-color: {{ T }};">
+    <div class="max-w-6xl mx-auto px-5 flex justify-between items-center">
+      <p class="text-white text-[11px]">📞 +57 (601) 234-5678 &nbsp;·&nbsp; ✉️ pedidos@colfrance.com.co</p>
+      <p class="text-[11px] hidden sm:block" style="color: #6f6ea8;">Lun – Vie · 7am – 6pm</p>
+    </div>
+  </div>
+
+  
+<div class="sticky top-0 z-50 px-4 py-2.5" style="background: {{ W }};">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 h-14 rounded-2xl shadow-sm" style="background: {{ W }}; border: 1.5px solid {{ S }};">
+      <a href="" class="flex items-center gap-2.5 shrink-0">
+        <img src="{% static 'images/colfrance.png' %}" alt="Colfrance" class="h-12 w-auto object-contain" />
+        <div class="leading-none hidden sm:block">
+          <p class="font-black text-sm tracking-widest" style="color: {{ P }}">COLFRANCE</p>
+          <p class="text-[9px] tracking-widest uppercase italic font-semibold" style="color: {{ R }}">Colfrance sí sabe</p>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center gap-0.5">
+        {# Link: Inicio #}
+        {% comment %} {% url 'home' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          Inicio
+        </a>
+
+        {# Link: Catálogo #}
+        {% comment %} {% url 'catalog' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          Catálogo
+        </a>
+
+        {# Link: Nosotros #}
+        {% comment %} {% url 'about' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          Nosotros
+        </a>
+
+        {# Link: Convocatorias #}
+        {% comment %} {% url 'convocatorias' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          Convocatorias
+        </a>
+
+        {# Link: PQR #}
+        {% comment %} {% url 'pqr' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          PQR
+        </a>
+
+        {# Link: Contribuir #}
+        {% comment %} {% url 'contribute' as link_url %} {% endcomment %}
+        <a href="{{ link_url }}"
+          class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
+          style="{% if request.path == link_url %}
+            
+            
+            
+            
+            color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+          {% else %}
+            
+            
+            
+            
+            color: {{ T }}; font-weight: 500;
+
+
+
+          {% endif %}">
+          Contribuir
+        </a>
+      </div>
+
+      <div class="hidden lg:flex items-center gap-2">
+        <a href="#contacto" class="px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:opacity-90 transition-all" style="background: {{ P }}">Cotizar</a>
+      </div>
+
+      <button id="mobile-menu-btn" class="lg:hidden w-9 h-9 rounded-xl flex flex-col items-center justify-center gap-1 transition-all" onclick="toggleMenu(this)">
+        <span class="line block w-5 h-0.5 rounded-full transition-all" style="background: {{ P }}"></span>
+        <span class="line block w-5 h-0.5 rounded-full transition-all" style="background: {{ P }}"></span>
+        <span class="line block w-5 h-0.5 rounded-full transition-all" style="background: {{ P }}"></span>
+      </button>
+    </nav>
+
+    <div id="mobile-menu-wrapper" class="lg:hidden grid transition-all duration-300 ease-in-out" style="grid-template-rows: 0fr; opacity: 0; visibility: hidden;">
+      <div class="overflow-hidden">
+        <div class="flex flex-col gap-2 mt-2 p-4 rounded-2xl shadow-sm border" style="background: {{ W }}; border-color: {{ S }};">
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">Inicio</a>
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">Catálogo</a>
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">Nosotros</a>
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">Convocatorias</a>
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">PQR</a>
+          <a href="#" class="px-3 py-2 rounded-xl text-sm font-medium transition-all hover:bg-[#edf0ff] active:scale-95" style="color: {{ T }};">Contribuir</a>
+          <a href="#contacto" class="mt-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white text-center transition-all active:scale-95" style="background: {{ P }}">Cotizar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    /* Comportamiento Hover */
+    .nav-link:hover {
+      color: #0000cd !important;
+      transition: all 0.7s ease-in-out;
+      background-color: #edf0ff !important;
+    }
+  </style>
+
+ 
+
+  
+{% endwith %}
