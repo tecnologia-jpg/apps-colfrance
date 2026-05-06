@@ -13,7 +13,7 @@ urlpatterns = [
         name="principal",
     ),
     path(
-        "/cargar_datos_contacto",
+        "cargar_datos_contacto",
         views.cargar_datos_contacto,
         name="cargar_datos_contacto",
     ),

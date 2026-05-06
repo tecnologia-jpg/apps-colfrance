@@ -27,7 +27,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -97,12 +96,12 @@ WSGI_APPLICATION = "apps_colfrance.wsgi.application"
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
-#         # "NAME": BASE_DIR / ".enviroment/db.sqlite3",
+#         "NAME": BASE_DIR / ".enviroment/db.sqlite3",
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
 
-# # Ajustes pre configurados de labase de datos de postgresql AZURE
+# Ajustes pre configurados de labase de datos de postgresql AZURE
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
