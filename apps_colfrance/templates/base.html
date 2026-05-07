@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>app colfrance</title>
     <link rel="stylesheet" href="{% static 'aforo_silos/css/vars.css' %}" />
-
+    <script src="https://cdn.tailwindcss.com"></script>
     {% block styles_login %}
 
     {% endblock %}
@@ -28,7 +28,7 @@
   </head>
 
   <body class="bg-light d-flex flex-column min-vh-100">
-    <main class="container">
+    <main class="">
       {% block aforo_silos %}
 
       {% endblock %}
@@ -55,6 +55,13 @@
       {% comment %}Pagina web ----------------------------------------------{% endcomment %}
 
       {% block principal %}
+
+      {% endblock %}
+
+      {% block catalogo %}
+
+      {% endblock %}
+      {% block nosotros %}
 
       {% endblock %}
     </main>

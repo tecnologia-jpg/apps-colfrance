@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block nosotros %}
+  {% include 'web_colfrance/components/navbar.html' %}
+  <div class="min-h-screen" style="background: #f5f6ff;">
+    <section class="relative overflow-hidden py-20" style="background: #18164b;">
+      <div class="absolute -top-24 -right-24 w-80 h-80 rounded-full opacity-10 pointer-events-none" style="background: #0135e3;"></div>
+      <div class="absolute -bottom-16 left-0 w-64 h-64 rounded-full opacity-15 pointer-events-none" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);"></div>
+
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10 text-center">
+        <span class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6 text-white" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">🌾 Nuestra Empresa</span>
+        <h1 class="font-black text-white leading-tight mb-4" style="font-size: clamp(2.2rem, 5vw, 3.5rem);">
+          Más de 40 años construyendo<br />
+          <span style="color: #e52a2d;">confianza y calidad</span>
+        </h1>
+        <p class="text-sm leading-relaxed max-w-2xl mx-auto mb-10" style="color: #8887be;">Conoce los valores, principios y políticas que guían cada decisión en Colfrance. Cuarenta años de historia que inician en las manos trabajadoras de nuestros campesinos, llevando productos con amor a cada rincón del país.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          <div class="rounded-2xl p-4 text-center" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);">
+            <p class="font-black text-2xl" style="color: #e52a2d;">40+</p>
+            <p class="text-xs mt-0.5" style="color: #8887be;">Años de trayectoria</p>
+          </div>
+          <div class="rounded-2xl p-4 text-center" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);">
+            <p class="font-black text-2xl" style="color: #ffffff;">500+</p>
+            <p class="text-xs mt-0.5" style="color: #8887be;">Clientes activos</p>
+          </div>
+          <div class="rounded-2xl p-4 text-center" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);">
+            <p class="font-black text-2xl" style="color: #e52a2d;">100%</p>
+            <p class="text-xs mt-0.5" style="color: #8887be;">Leche colombiana</p>
+          </div>
+          <div class="rounded-2xl p-4 text-center" style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);">
+            <p class="font-black text-2xl" style="color: #ffffff;">INVIMA</p>
+            <p class="text-xs mt-0.5" style="color: #8887be;">Certificación</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute bottom-0 left-0 right-0 leading-none">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display: block; width: 100%;">
+          <path d="M0,40 C360,60 1080,10 1440,40 L1440,60 L0,60 Z" fill="#f5f6ff" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="py-16 relative overflow-hidden" style="background: #ffffff;">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">📖 Nuestro Legado</span>
+          <h2 class="font-black mb-2" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: #18164b;">Nuestra <span style="color: #0135e3;">Historia</span></h2>
+          <p class="text-sm max-w-md mx-auto" style="color: #888;">Un recorrido a través del tiempo, recordando los momentos y lugares que nos trajeron hasta aquí.</p>
+        </div>
+
+        <div class="relative w-full overflow-hidden flex gap-6 marquee-container pb-8">
+          <div class="flex gap-6 shrink-0 marquee-track">
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/10/800/800" alt="Inicios en el campo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">1985</p>
+                <p class="text-white/90 text-sm">Nuestros primeros pasos en el campo, trabajando de la mano con agricultores locales.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/20/800/800" alt="Primera planta" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">1998</p>
+                <p class="text-white/90 text-sm">Inauguración de la primera planta pasteurizadora, mejorando nuestra capacidad productiva.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/30/800/800" alt="Innovación" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">2010</p>
+                <p class="text-white/90 text-sm">Ampliación de nuestro portafolio de productos con nuevas líneas de quesos y yogures.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/42/800/800" alt="Actualidad" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">Actualidad</p>
+                <p class="text-white/90 text-sm">Llevando lo mejor del campo a tu mesa, con procesos modernos y certificación de calidad.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-6 shrink-0 marquee-track" aria-hidden="true">
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/10/800/800" alt="Inicios en el campo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">1985</p>
+                <p class="text-white/90 text-sm">Nuestros primeros pasos en el campo, trabajando de la mano con agricultores locales.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/20/800/800" alt="Primera planta" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">1998</p>
+                <p class="text-white/90 text-sm">Inauguración de la primera planta pasteurizadora, mejorando nuestra capacidad productiva.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/30/800/800" alt="Innovación" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">2010</p>
+                <p class="text-white/90 text-sm">Ampliación de nuestro portafolio de productos con nuevas líneas de quesos y yogures.</p>
+              </div>
+            </div>
+
+            <div class="relative flex-none w-80 h-96 rounded-3xl overflow-hidden group shadow-xl">
+              <img src="https://picsum.photos/id/42/800/800" alt="Actualidad" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#18164b]/90 to-transparent">
+                <p class="text-white font-black text-2xl mb-1">Actualidad</p>
+                <p class="text-white/90 text-sm">Llevando lo mejor del campo a tu mesa, con procesos modernos y certificación de calidad.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <a href="#" class="inline-flex items-center justify-center gap-2 font-bold text-sm transition-all hover:-translate-y-0.5" style="color: #0135e3;">Ver galería completa <span class="text-lg">→</span></a>
+        </div>
+      </div>
+
+      <style>
+        /* Configuración de la animación lineal e infinita */
+        .marquee-track {
+          animation: marquee 20s linear infinite;
+        }
+        
+        /* Pausar ambas pistas cuando se hace hover sobre el contenedor principal */
+        .marquee-container:hover .marquee-track {
+          animation-play-state: paused;
+        }
+        
+        /* Bucle perfecto: Desplazar 100% del ancho del elemento + el gap (1.5rem / 24px) */
+        @keyframes marquee {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(calc(-100% - 1.5rem));
+          }
+        }
+      </style>
+    </section>
+    <section class="py-16" style="background: #ffffff;">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">🧭 Propósito organizacional</span>
+          <h2 class="font-black" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: #18164b;">Misión & <span style="color: #0135e3;">Visión</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="rounded-3xl p-8 relative overflow-hidden" style="background: #f5f6ff; border: 2px solid #e3e3e3;">
+            <div class="absolute -top-6 -right-6 w-28 h-28 rounded-full opacity-10" style="background: #0135e3;"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">🎯</div>
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-widest" style="color: #e52a2d;">Nuestra</p>
+                  <h3 class="font-black" style="font-size: 1.5rem; color: #18164b;">Misión</h3>
+                </div>
+              </div>
+              <p class="text-sm leading-relaxed" style="color: #555;">
+                Ser una empresa destacada en el sector lácteo por su <strong style="color: #18164b;">eficiencia, calidad, compromiso y responsabilidad</strong>, para elaborar y comercializar productos que mejoren la calidad de vida de nuestros consumidores, garantizando un excelente retorno a nuestros inversionistas y buscando siempre el desarrollo y progreso de nuestros colaboradores.
+              </p>
+              <div class="mt-6 pt-4 flex flex-wrap gap-2" style="border-top: 1.5px dashed #e3e3e3;">
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #0135e312; color: #0135e3;">Calidad</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #0135e312; color: #0135e3;">Eficiencia</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #0135e312; color: #0135e3;">Compromiso</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: #0135e312; color: #0135e3;">Responsabilidad</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-3xl p-8 relative overflow-hidden" style="background: #18164b;">
+            <div class="absolute -bottom-6 -left-6 w-28 h-28 rounded-full opacity-10" style="background: #e52a2d;"></div>
+            <div class="absolute -top-6 -right-6 w-24 h-24 rounded-full opacity-10" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);"></div>
+            <div class="relative z-10">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl shrink-0" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">🔭</div>
+                <div>
+                  <p class="text-[10px] font-black uppercase tracking-widest" style="color: #8887be;">Nuestra</p>
+                  <h3 class="font-black text-white" style="font-size: 1.5rem;">Visión</h3>
+                </div>
+              </div>
+              <p class="text-sm leading-relaxed" style="color: #8887be;">
+                Al <strong class="text-white">2025</strong> duplicaremos nuestro negocio siendo reconocidos como la <strong class="text-white">tercera marca en Colombia</strong> y empresa líder en la elaboración de productos lácteos, cumpliendo con los más altos estándares de calidad.
+              </p>
+              <div class="mt-6 pt-4 flex flex-wrap gap-2" style="border-top: 1.5px dashed rgba(255,255,255,0.12);">
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(255,255,255,0.1); color: #c4c3e8;">Top 3 Colombia</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(255,255,255,0.1); color: #c4c3e8;">Liderazgo</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(255,255,255,0.1); color: #c4c3e8;">Alta calidad</span>
+                <span class="text-xs font-bold px-3 py-1.5 rounded-full" style="background: rgba(255,255,255,0.1); color: #c4c3e8;">Crecimiento</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 relative overflow-hidden" style="background: #f5f6ff;">
+      <div class="absolute -right-20 top-10 w-64 h-64 rounded-full opacity-10 pointer-events-none" style="background: #0135e3;"></div>
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 relative z-10">
+        <div class="text-center mb-12">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white" style="background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%);">📋 Marco normativo</span>
+          <h2 class="font-black" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: #18164b;">Nuestras <span style="color: #0135e3;">Políticas</span></h2>
+          <p class="text-sm max-w-md mx-auto mt-2" style="color: #888;">Principios que regulan nuestra actuación frente al entorno, la comunidad y los colaboradores.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-8" id="policy-tabs">
+          <button data-target="ambiental" class="tab-btn active flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200" style="background: #0135e3; color: #ffffff; box-shadow: 0 4px 16px #0135e344; border: none;"><span>🌿</span><span class="hidden sm:inline">Política Ambiental</span><span class="sm:hidden">Ambiental</span></button>
+          <button data-target="accion" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200" style="background: #ffffff; color: #18164b; border: 1.5px solid #e3e3e3;"><span>🤝</span><span class="hidden sm:inline">Política de Acción Popular</span><span class="sm:hidden">Acción</span></button>
+          <button data-target="calidad" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200" style="background: #ffffff; color: #18164b; border: 1.5px solid #e3e3e3;"><span>✅</span><span class="hidden sm:inline">Política de Calidad</span><span class="sm:hidden">Calidad</span></button>
+          <button data-target="datos" class="tab-btn flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all duration-200" style="background: #ffffff; color: #18164b; border: 1.5px solid #e3e3e3;"><span>🔒</span><span class="hidden sm:inline">Política de Datos Personales</span><span class="sm:hidden">Datos</span></button>
+        </div>
+
+        <div id="content-ambiental" class="policy-content rounded-3xl overflow-hidden shadow-sm" style="border: 2px solid #34d399; display: block;">
+          <div class="px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-4" style="background: #f0fff4;">
+            <div class="flex items-center gap-4 flex-1">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0" style="background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">♻️</div>
+              <div>
+                <h3 class="font-black" style="font-size: 1.3rem; color: #18164b;">Política Ambiental</h3>
+                <p class="text-sm leading-relaxed mt-0.5" style="color: #666;">Fabricar y comercializar lácteos de alta calidad con metodologías ambientalmente sostenibles.</p>
+              </div>
+            </div>
+            <button onclick="descargarPoliticaAmbiental()" class="flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black text-white hover:opacity-90 transition-all shrink-0" style="background: #059669; box-shadow: 0 4px 14px #05996944;"><span>📄</span> Descargar PDF</button>
+          </div>
+          <div class="p-8" style="background: #ffffff;">
+            <p class="text-sm leading-relaxed mb-6" style="color: #555;">PRODUCTOS LÁCTEOS COLFRANCE CPS EN C EN REORGANIZACIÓN tiene como política ambiental fabricar y comercializar productos lácteos de alta calidad con metodologías ambientalmente sostenibles, mejorando los procesos productivos para lograr mitigar los impactos ambientales, cumpliendo con la legislación ambiental legal vigente, establecida por las entidades reguladoras.</p>
+            <p class="text-[10px] font-black uppercase tracking-widest mb-4" style="color: #e52a2d;">Compromisos específicos</p>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 font-black text-white" style="background: #0135e3;">1</span><span class="text-sm leading-relaxed" style="color: #555;">Establecer procesos de mejoras continuas de todos sus productos, para prevenir las afectaciones generadas por la producción.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 font-black text-white" style="background: #0135e3;">2</span><span class="text-sm leading-relaxed" style="color: #555;">Cumplir con la normativa ambiental vigente.</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-lg flex items-center justify-center text-xs shrink-0 mt-0.5 font-black text-white" style="background: #0135e3;">3</span><span class="text-sm leading-relaxed" style="color: #555;">Hacer uso eficiente y racional de los recursos naturales usados por la empresa.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="content-accion" class="policy-content rounded-3xl overflow-hidden shadow-sm" style="border: 2px solid #6366f1; display: none;">
+          <div class="px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-4" style="background: #f0f4ff;">
+            <div class="flex items-center gap-4 flex-1">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0" style="background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">⚖️</div>
+              <div>
+                <h3 class="font-black" style="font-size: 1.3rem; color: #18164b;">Política de Acción Popular</h3>
+                <p class="text-sm leading-relaxed mt-0.5" style="color: #666;">Transparencia, diálogo y respeto por los derechos colectivos de nuestras comunidades.</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-8" style="background: #ffffff;">
+            <p class="text-sm leading-relaxed mb-6" style="color: #555;">Colfrance reconoce y respeta el derecho de las comunidades a interponer acciones populares para la defensa de los intereses colectivos.</p>
+          </div>
+        </div>
+
+        <div id="content-calidad" class="policy-content rounded-3xl overflow-hidden shadow-sm" style="border: 2px solid #f59e0b; display: none;">
+          <div class="px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-4" style="background: #fffbeb;">
+            <div class="flex items-center gap-4 flex-1">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0" style="background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">🏅</div>
+              <div>
+                <h3 class="font-black" style="font-size: 1.3rem; color: #18164b;">Política de Calidad</h3>
+                <p class="text-sm leading-relaxed mt-0.5" style="color: #666;">Excelencia en cada proceso, desde el ordeño hasta la entrega, avalada por INVIMA y BPM.</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-8" style="background: #ffffff;">
+            <p class="text-sm leading-relaxed mb-6" style="color: #555;">La calidad es el pilar fundamental de Colfrance. Nuestro Sistema de Gestión de Calidad garantiza que cada producto cumpla los más altos estándares sanitarios y nutricionales.</p>
+          </div>
+        </div>
+
+        <div id="content-datos" class="policy-content rounded-3xl overflow-hidden shadow-sm" style="border: 2px solid #a855f7; display: none;">
+          <div class="px-8 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-4" style="background: #fdf4ff;">
+            <div class="flex items-center gap-4 flex-1">
+              <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shrink-0" style="background: #ffffff; box-shadow: 0 2px 12px rgba(0,0,0,0.08);">🛡️</div>
+              <div>
+                <h3 class="font-black" style="font-size: 1.3rem; color: #18164b;">Política de Datos Personales</h3>
+                <p class="text-sm leading-relaxed mt-0.5" style="color: #666;">Protección y uso responsable de la información personal conforme a la Ley 1581 de 2012.</p>
+              </div>
+            </div>
+          </div>
+          <div class="p-8" style="background: #ffffff;">
+            <p class="text-sm leading-relaxed mb-6" style="color: #555;">Colfrance cumple con la Ley Estatutaria 1581 de 2012 y el Decreto Reglamentario 1377 de 2013 en materia de protección de datos personales.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 pb-24" data-fg-b9ov154="118.26:130.27574:/src/app/components/AboutPage.tsx:360:7:21245:3215:e:section:e" data-fgid-b9ov154=":rg6:" style="background: rgb(255, 255, 255);">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8" data-fg-b9ov155="118.26:130.27574:/src/app/components/AboutPage.tsx:361:9:21313:3130:e:div:etetxte" data-fgid-b9ov155=":rg7:">
+        <div class="text-center mb-12" data-fg-b9ov156="118.26:130.27574:/src/app/components/AboutPage.tsx:362:11:21372:639:e:div:etete" data-fgid-b9ov156=":rg8:">
+          <span class="inline-block text-xs font-bold tracking-[0.25em] uppercase mb-3 px-4 py-1.5 rounded-full text-white" data-fg-b9ov157="118.26:130.27574:/src/app/components/AboutPage.tsx:363:13:21420:200:e:span:t" data-fgid-b9ov157=":rg9:" style="background: linear-gradient(135deg, rgb(254, 142, 90) 0%, rgb(249, 67, 110) 100%);">💎 Lo que nos define</span><h2 class="font-black" data-fg-b9ov159="118.26:130.27574:/src/app/components/AboutPage.tsx:366:13:21633:171:e:h2:te" data-fgid-b9ov159=":rga:" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: rgb(24, 22, 75);">Nuestros <span data-fg-b9ov161="118.26:130.27574:/src/app/components/AboutPage.tsx:367:24:21745:41:e:span:t" data-fgid-b9ov161=":rgb:" style="color: rgb(1, 53, 227);">Valores</span></h2><p class="text-sm max-w-md mx-auto mt-2" data-fg-b9ov163="118.26:130.27574:/src/app/components/AboutPage.tsx:369:13:21817:177:e:p:t" data-fgid-b9ov163=":rgc:" style="color: rgb(136, 136, 136);">Principios que guían cada decisión y cada producto que llevamos a tu mesa.</p>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-5" data-fg-b9ov165="118.26:130.27574:/src/app/components/AboutPage.tsx:374:11:22023:969:e:div:x" data-fgid-b9ov165=":rgd:">
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rge:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rgf:" style="background: linear-gradient(135deg, rgb(254, 142, 90) 0%, rgb(249, 67, 110) 100%);">🏆</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rgg:" style="color: rgb(24, 22, 75);">Liderazgo</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rgh:" style="color: rgb(136, 136, 136);">Guiamos con el ejemplo, impulsando a nuestro equipo hacia la excelencia en cada proceso productivo.</p>
+          </div>
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rgi:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rgj:" style="background: rgba(1, 53, 227, 0.125);">🤝</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rgk:" style="color: rgb(24, 22, 75);">Responsabilidad</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rgl:" style="color: rgb(136, 136, 136);">Asumimos con seriedad cada compromiso con nuestros clientes, colaboradores y el medio ambiente.</p>
+          </div>
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rgm:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rgn:" style="background: linear-gradient(135deg, rgb(254, 142, 90) 0%, rgb(249, 67, 110) 100%);">💎</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rgo:" style="color: rgb(24, 22, 75);">Honradez</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rgp:" style="color: rgb(136, 136, 136);">Actuamos con transparencia e integridad en cada relación comercial y operativa de la empresa.</p>
+          </div>
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rgq:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rgr:" style="background: rgba(1, 53, 227, 0.125);">🙏</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rgs:" style="color: rgb(24, 22, 75);">Respeto</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rgt:" style="color: rgb(136, 136, 136);">Valoramos a cada persona y cada labor. El respeto es la base de nuestra cultura organizacional.</p>
+          </div>
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rgu:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rgv:" style="background: linear-gradient(135deg, rgb(254, 142, 90) 0%, rgb(249, 67, 110) 100%);">😊</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rh0:" style="color: rgb(24, 22, 75);">Amabilidad</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rh1:" style="color: rgb(136, 136, 136);">Atendemos a nuestros clientes y aliados con calidez, cortesía y disposición genuina de servir.</p>
+          </div>
+          <div class="group flex flex-col items-center text-center gap-4 p-6 rounded-3xl hover:shadow-lg transition-all duration-300 hover:-translate-y-1 cursor-default" data-fg-b9ov167="118.26:130.27574:/src/app/components/AboutPage.tsx:376:15:22130:829:e:div:etete" data-fgid-b9ov167=":rh2:" style="background: rgb(245, 246, 255); border: 1.5px solid rgb(227, 227, 227);">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shrink-0 transition-all duration-300 group-hover:scale-110" data-fg-b9ov168="118.26:130.27574:/src/app/components/AboutPage.tsx:381:17:22450:295:e:div:x" data-fgid-b9ov168=":rh3:" style="background: rgba(1, 53, 227, 0.125);">❤️</div>
+            <p class="font-black text-sm leading-tight" data-fg-b9ov170="118.26:130.27574:/src/app/components/AboutPage.tsx:387:17:22762:82:e:p:x" data-fgid-b9ov170=":rh4:" style="color: rgb(24, 22, 75);">Amor por el trabajo</p>
+            <p class="text-xs leading-relaxed" data-fg-b9ov172="118.26:130.27574:/src/app/components/AboutPage.tsx:388:17:22861:77:e:p:x" data-fgid-b9ov172=":rh5:" style="color: rgb(136, 136, 136);">Ponemos pasión y dedicación en cada producto que elaboramos, honrando el esfuerzo del campo colombiano.</p>
+          </div>
+        </div>
+        <div class="mt-14 rounded-3xl p-8 flex flex-col md:flex-row items-center gap-8" data-fg-b9ov175="118.26:130.27574:/src/app/components/AboutPage.tsx:394:11:23045:1383:e:div:ete" data-fgid-b9ov175=":rh6:" style="background: rgb(24, 22, 75);">
+          <div class="flex-1 text-center md:text-left" data-fg-b9ov176="118.26:130.27574:/src/app/components/AboutPage.tsx:395:13:23168:495:e:div:etete" data-fgid-b9ov176=":rh7:">
+            <p class="text-xs font-black uppercase tracking-widest mb-2" data-fg-b9ov177="118.26:130.27574:/src/app/components/AboutPage.tsx:396:15:23232:110:e:p:t" data-fgid-b9ov177=":rh8:" style="color: rgb(136, 135, 190);">Avalados por</p><h3 class="font-black text-white" data-fg-b9ov179="118.26:130.27574:/src/app/components/AboutPage.tsx:397:15:23357:119:e:h3:t" data-fgid-b9ov179=":rh9:" style="font-size: 1.4rem;">Certificaciones que respaldan nuestra calidad</h3><p class="text-sm mt-2" data-fg-b9ov181="118.26:130.27574:/src/app/components/AboutPage.tsx:398:15:23491:153:e:p:t" data-fgid-b9ov181=":rha:" style="color: rgb(136, 135, 190);">Cada producto Colfrance cumple los más altos estándares nacionales de inocuidad alimentaria.</p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-3" data-fg-b9ov183="118.26:130.27574:/src/app/components/AboutPage.tsx:400:13:23676:735:e:div:x" data-fgid-b9ov183=":rhb:">
+            <div class="flex flex-col items-center px-5 py-3 rounded-2xl text-center" data-fg-b9ov185="118.26:130.27574:/src/app/components/AboutPage.tsx:407:17:24010:364:e:div:ete" data-fgid-b9ov185=":rhc:" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);">
+              <p class="font-black text-white text-sm" data-fg-b9ov186="118.26:130.27574:/src/app/components/AboutPage.tsx:408:19:24210:54:e:p:x" data-fgid-b9ov186=":rhd:">✅ INVIMA</p>
+              <p class="text-[10px]" data-fg-b9ov188="118.26:130.27574:/src/app/components/AboutPage.tsx:409:19:24283:68:e:p:x" data-fgid-b9ov188=":rhe:" style="color: rgb(111, 110, 168);">Sanitario</p>
+            </div>
+            <div class="flex flex-col items-center px-5 py-3 rounded-2xl text-center" data-fg-b9ov185="118.26:130.27574:/src/app/components/AboutPage.tsx:407:17:24010:364:e:div:ete" data-fgid-b9ov185=":rhf:" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);">
+              <p class="font-black text-white text-sm" data-fg-b9ov186="118.26:130.27574:/src/app/components/AboutPage.tsx:408:19:24210:54:e:p:x" data-fgid-b9ov186=":rhg:">🏭 BPM</p>
+              <p class="text-[10px]" data-fg-b9ov188="118.26:130.27574:/src/app/components/AboutPage.tsx:409:19:24283:68:e:p:x" data-fgid-b9ov188=":rhh:" style="color: rgb(111, 110, 168);">Manufactura</p>
+            </div>
+            <div class="flex flex-col items-center px-5 py-3 rounded-2xl text-center" data-fg-b9ov185="118.26:130.27574:/src/app/components/AboutPage.tsx:407:17:24010:364:e:div:ete" data-fgid-b9ov185=":rhi:" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);">
+              <p class="font-black text-white text-sm" data-fg-b9ov186="118.26:130.27574:/src/app/components/AboutPage.tsx:408:19:24210:54:e:p:x" data-fgid-b9ov186=":rhj:">📋 ISO 9001</p>
+              <p class="text-[10px]" data-fg-b9ov188="118.26:130.27574:/src/app/components/AboutPage.tsx:409:19:24283:68:e:p:x" data-fgid-b9ov188=":rhk:" style="color: rgb(111, 110, 168);">Calidad</p>
+            </div>
+            <div class="flex flex-col items-center px-5 py-3 rounded-2xl text-center" data-fg-b9ov185="118.26:130.27574:/src/app/components/AboutPage.tsx:407:17:24010:364:e:div:ete" data-fgid-b9ov185=":rhl:" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15);">
+              <p class="font-black text-white text-sm" data-fg-b9ov186="118.26:130.27574:/src/app/components/AboutPage.tsx:408:19:24210:54:e:p:x" data-fgid-b9ov186=":rhm:">🌡️ HACCP</p>
+              <p class="text-[10px]" data-fg-b9ov188="118.26:130.27574:/src/app/components/AboutPage.tsx:409:19:24283:68:e:p:x" data-fgid-b9ov188=":rhn:" style="color: rgb(111, 110, 168);">Inocuidad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  {% include 'web_colfrance/components/footer.html' %}
+{% endblock %}
+
+{% block extra_js %}
+  <script>
+    // ── Lógica de Tabs ──
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabBtns = document.querySelectorAll('.tab-btn')
+      const tabContents = document.querySelectorAll('.policy-content')
+    
+      tabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target')
+    
+          tabBtns.forEach((b) => {
+            b.classList.remove('active')
+            b.style.background = '#ffffff'
+            b.style.color = '#18164b'
+            b.style.border = '1.5px solid #e3e3e3'
+            b.style.boxShadow = 'none'
+          })
+    
+          btn.classList.add('active')
+          btn.style.background = '#0135e3'
+          btn.style.color = '#ffffff'
+          btn.style.border = 'none'
+          btn.style.boxShadow = '0 4px 16px #0135e344'
+    
+          tabContents.forEach((content) => {
+            content.style.display = 'none'
+          })
+    
+          document.getElementById('content-' + targetId).style.display = 'block'
+        })
+      })
+    })
+    
+    // ── Lógica de Descarga PDF ──
+    function descargarPoliticaAmbiental() {
+      const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8" /><title>Política Ambiental</title></head><body><h1>Política Ambiental</h1><p>Contenido del PDF...</p></body></html>`
+      const win = window.open('', '_blank')
+      if (!win) return
+      win.document.write(html)
+      win.document.close()
+      win.focus()
+      setTimeout(() => win.print(), 600)
+    }
+  </script>
+{% endblock %}

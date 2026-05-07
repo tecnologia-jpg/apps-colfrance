@@ -13,6 +13,16 @@ urlpatterns = [
         name="principal",
     ),
     path(
+        "catalogo",
+        views.catalogo,
+        name="catalogo",
+    ),
+    path(
+        "nosotros",
+        views.nosotros,
+        name="nosotros",
+    ),
+    path(
         "cargar_datos_contacto",
         views.cargar_datos_contacto,
         name="cargar_datos_contacto",

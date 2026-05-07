@@ -9,8 +9,7 @@
     </div>
   </div>
 
-  
-<div class="sticky top-0 z-50 px-4 py-2.5" style="background: {{ W }};">
+  <div class="sticky top-0 z-50 px-4 py-2.5" style="background: {{ W }};">
     <nav class="max-w-6xl mx-auto flex items-center justify-between px-4 h-14 rounded-2xl shadow-sm" style="background: {{ W }}; border: 1.5px solid {{ S }};">
       <a href="" class="flex items-center gap-2.5 shrink-0">
         <img src="{% static 'images/colfrance.png' %}" alt="Colfrance" class="h-12 w-auto object-contain" />
@@ -23,9 +22,14 @@
       <div class="hidden lg:flex items-center gap-0.5">
         {# Link: Inicio #}
         {% comment %} {% url 'home' as link_url %} {% endcomment %}
-        <a href="{{ link_url }}"
+        <a href="{% url 'web_colfrance:principal' %}"
           class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
           style="{% if request.path == link_url %}
+            
+            
+            
+            
+            
             
             
             
@@ -34,12 +38,27 @@
 
 
 
+
+
+
+
+
           {% else %}
             
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -49,9 +68,14 @@
 
         {# Link: Catálogo #}
         {% comment %} {% url 'catalog' as link_url %} {% endcomment %}
-        <a href="{{ link_url }}"
+        <a href="{% url 'web_colfrance:catalogo' %}"
           class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
           style="{% if request.path == link_url %}
+            
+            
+            
+            
+            
             
             
             
@@ -60,12 +84,27 @@
 
 
 
+
+
+
+
+
           {% else %}
             
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -75,9 +114,14 @@
 
         {# Link: Nosotros #}
         {% comment %} {% url 'about' as link_url %} {% endcomment %}
-        <a href="{{ link_url }}"
+        <a href="{% url 'web_colfrance:nosotros' %}"
           class="nav-link px-3 py-2 rounded-xl text-sm transition-all"
           style="{% if request.path == link_url %}
+            
+            
+            
+            
+            
             
             
             
@@ -86,12 +130,27 @@
 
 
 
+
+
+
+
+
           {% else %}
             
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -108,7 +167,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+
+
 
 
 
@@ -117,7 +186,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -134,7 +213,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+
+
 
 
 
@@ -143,7 +232,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -160,7 +259,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ P }}; background: #edf0ff; font-weight: 700;
+
+
+
+
+
 
 
 
@@ -169,7 +278,17 @@
             
             
             
+            
+            
+            
+            
+            
             color: {{ T }}; font-weight: 500;
+
+
+
+
+
 
 
 
@@ -212,8 +331,4 @@
       background-color: #edf0ff !important;
     }
   </style>
-
- 
-
-  
 {% endwith %}

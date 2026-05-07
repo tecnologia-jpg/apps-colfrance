@@ -4,15 +4,22 @@ import os
 from django.contrib import messages
 from .models import Producto, Categoria, Contacto
 from .forms import FormContacto
+from django.conf import settings
 
 
 def recuperar_imagenes_socios():
-    path = r"apps_colfrance\static\web_colfrance\icons"
-    imagenes = []
+    path = os.path.join(
+        settings.BASE_DIR, "apps_colfrance", "static", "web_colfrance", "icons"
+    )
 
+    imagenes = []
     if os.path.exists(path):
         for archivo in os.listdir(path):
-            imagenes.append(archivo)
+            if archivo.lower().endswith(
+                (".png", ".jpg", ".jpeg", ".svg", ".webp", ".gif")
+            ):
+                imagenes.append(archivo)
+
     return imagenes
 
 
@@ -45,6 +52,26 @@ def principal(request):
         return render(request, f"{PATH_TEMPLATES_WEB}principal.html", context=context)
     else:
         return render(request, f"{PATH_TEMPLATES_WEB}principal.html", context=context)
+
+
+def catalogo(request):
+    context = {}
+    categorias = Categoria.objects.all()
+    print(categorias)
+    productos = Producto.objects.all()
+    print(productos)
+    context["icons_socios"] = recuperar_imagenes_socios()
+    print(context["icons_socios"])
+    if categorias:
+        context["categorias"] = categorias
+    if productos:
+        context["productos"] = productos
+        # print(context["productos"][1].__dict__)
+    return render(request, f"{PATH_TEMPLATES_WEB}catalogo.html", context=context)
+
+
+def nosotros(request):
+    return render(request, f"{PATH_TEMPLATES_WEB}nosotros.html")
 
 
 def cargar_datos_contacto(request):
