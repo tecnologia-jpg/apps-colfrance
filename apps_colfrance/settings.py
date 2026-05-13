@@ -27,7 +27,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+# SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # aplicacion de aforo de silos
     "aforo_silos",
     "web_colfrance",
+    "control_plagas",
 ]
 
 MIDDLEWARE = [

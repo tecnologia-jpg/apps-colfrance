@@ -6,6 +6,9 @@ from .models import Producto, Categoria, Contacto
 from .forms import FormContacto
 from django.conf import settings
 
+from.services.enviar_correo import enviar_correo
+
+
 
 def recuperar_imagenes_socios():
     path = os.path.join(
@@ -91,6 +94,15 @@ def cargar_datos_contacto(request):
 
                 print(" mensaje enviado")
                 messages.success(request, "Mensaje enviado correctamente.")
+                asunto = "WEB//COLFRANCE - SOLICITUD DE INFORMACIÓN WEBCOLFRANCE"
+                informacion = {
+                    "nombre":data["nombre"],
+                    "correo":data["correo"],
+                    "telefono":data["telefono"],
+                    "asunto":data["asunto"],
+                    "mensaje":data["mensaje"],
+                }
+                enviar_correo(asunto,informacion)
                 return redirect("web_colfrance:principal")
 
             except Exception as e:

@@ -13,7 +13,7 @@ SMTP_PORT = 587
 EMAIL = "tecnologia@colfrance.com.co"
 PASSWORD = "svcc bnfi obgi gxfr"
 
-ruta = r"C:\Users\nocua\Downloads\usuariosarco.xlsx"
+ruta = r"C:\Users\nocua\Downloads\2. USUARIOS (1).xlsx"
 
 
 def leer_archivo(ruta):
@@ -100,23 +100,25 @@ def procesar_info(data):
    
     for index, fila in data.iterrows():
         correo = fila["CORREO"]
+        ESTADO = fila["CORREO_ENVIADO"]
 
         # filtra: vacíos, NaN, tu propio correo y formatos inválidos
-        if (
-            pd.isna(correo)
-            or not isinstance(correo, str)
-            or correo.strip() == ""
-            or correo.strip().lower() == "tecnologia@colfrance.com.co"
-            or not re.match(r"^[\w\.-]+@[\w\.-]+\.\w+$", correo.strip())
-        ):
-            continue
+        # if (
+        #     pd.isna(correo)
+        #     or not isinstance(correo, str)
+        #     or correo.strip() == ""
+        #     or correo.strip().lower() == "tecnologia@colfrance.com.co"
+        #     or not re.match(r"^[\w\.-]+@[\w\.-]+\.\w+$", correo.strip())
+        #     or ESTADO != "si"
+        # ):
+        #     continue
 
-        print(fila["NOMBRE"], fila["RESPONSABLE"], correo.strip(), fila["CONTRASEÑA"])
+        print(fila["NOMBRE_USUARIO"], fila["RESPONSABLE"], correo.strip(), fila["CONTRASEÑA"])
         enviar_correo(
-            fila["NOMBRE"], fila["RESPONSABLE"], correo.strip(), fila["CONTRASEÑA"]
+            fila["NOMBRE_USUARIO"], fila["RESPONSABLE"], correo.strip(), fila["CONTRASEÑA"]
         )
         
-        # enviar_correo("admin", "Alex Nocua", "tecnologia@colfrance.com.co", "1234")
+        enviar_correo("admin", "Alex Nocua", "tecnologia@colfrance.com.co", "1234")
 
 
 procesar_info(data)
