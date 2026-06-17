@@ -26,11 +26,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-SECRET_KEY = "django-insecure-nl!dhb&2l6jbbut+j4fc(foi0(&%(e(kx97sx6s1$o3s4px)*+"
 # SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -56,11 +55,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # importacion y exportacion de django
+    "import_export",
     # aplicacion de aforo de silos
     "aforo_silos",
     "web_colfrance",
     "control_plagas",
-    "recursos_humanos"
+    "recursos_humanos",
+    "tecnologia",
 ]
 
 MIDDLEWARE = [
@@ -169,9 +171,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'tecnologia@colfrance.com.co'
-EMAIL_HOST_PASSWORD = 'svcc bnfi obgi gxfr'
+EMAIL_HOST_USER = "tecnologia@colfrance.com.co"
+EMAIL_HOST_PASSWORD = "svcc bnfi obgi gxfr"

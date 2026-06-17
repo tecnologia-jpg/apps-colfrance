@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluación - {{ examen.nombre }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .header-section { background: linear-gradient(135deg, #0135e3 0%, #010fa8 100%); color: white; padding: 3rem 1.5rem; border-radius: 0 0 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+        
+        .section-card { background: #fff; border-radius: 1rem; border: 1px solid #e2e8f0; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .section-icon { background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%); width: 2rem; height: 2rem; border-radius: 0.5rem; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 1rem; margin-right: 0.5rem; }
+        .section-title { color: #18164b; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; margin-bottom: 1.5rem; }
+        
+        .question-box { border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 1.5rem; }
+        .question-box:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        
+        .form-check { padding: 0.75rem 1rem 0.75rem 2.5rem; border-radius: 0.75rem; border: 1px solid transparent; transition: 0.2s; background: #f8fafc; cursor: pointer; margin-bottom: 0.5rem; }
+        .form-check:hover { border-color: #e2e8f0; }
+        
+        /* Cuando el radio está seleccionado, se pinta de azul claro */
+        .form-check:has(input:checked) { background-color: #0135e312; border-color: #0135e3; color: #0135e3; font-weight: 500; }
+        .form-check-input:checked { background-color: #0135e3; border-color: #0135e3; }
+        
+        .django-field-container input, .django-field-container select { border-radius: 0.5rem; padding: 0.6rem 1rem; border: 1px solid #e2e8f0; font-size: 0.9rem; width: 100%; background: #f8fafc; }
+        .django-field-container input:focus, .django-field-container select:focus { border-color: #0135e3; box-shadow: 0 0 0 3px #0135e330; outline: none; }
+        .django-field-container label { font-size: 0.75rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+        
+        .btn-gradient { background: linear-gradient(90deg, #0135e3 0%, #010fa8 100%); color: white; border-radius: 9999px; padding: 0.75rem 2.5rem; font-weight: 600; border: none; transition: 0.2s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .btn-gradient:hover { opacity: 0.9; color: white; transform: translateY(-1px); }
+    </style>
+</head>
+<body>
+
+<div class="header-section text-center shadow-sm relative">
+    <a href="/app_rh/" class="text-white text-decoration-none position-absolute" style="left: 20px; top: 40px; font-size: 0.9rem;"><i class="fas fa-arrow-left me-1"></i> Volver</a>
+    <h1 class="fw-bold fs-3">{{ examen.nombre }}</h1>
+    <p class="text-white-50 mt-2 text-sm">Complete sus datos y responda atentamente a cada pregunta.</p>
+</div>
+
+<div class="container mb-5" style="max-width: 800px;">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="section-card shadow-sm">
+            <h2 class="section-title"><span class="section-icon"><i class="fas fa-user"></i></span> Información Personal</h2>
+            <div class="row g-3 django-field-container">
+                {% for field in form %}
+                <div class="col-md-6">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section-card shadow-sm">
+            <h2 class="section-title"><span class="section-icon"><i class="fas fa-list-ol"></i></span> Cuestionario</h2>
+
+            {% for pregunta in examen.preguntas.all %}
+            <div class="question-box">
+                <p class="fw-bold mb-3 text-dark"><span style="color: #e52a2d;">{{ pregunta.numero }}.</span> {{ pregunta.texto }}</p>
+                
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="p{{ pregunta.id }}" value="A" id="p{{ pregunta.id }}a" required>
+                    <label class="form-check-label w-100" for="p{{ pregunta.id }}a">{{ pregunta.opcion_a }}</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="p{{ pregunta.id }}" value="B" id="p{{ pregunta.id }}b">
+                    <label class="form-check-label w-100" for="p{{ pregunta.id }}b">{{ pregunta.opcion_b }}</label>
+                </div>
+                {% if pregunta.opcion_c %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="p{{ pregunta.id }}" value="C" id="p{{ pregunta.id }}c">
+                    <label class="form-check-label w-100" for="p{{ pregunta.id }}c">{{ pregunta.opcion_c }}</label>
+                </div>
+                {% endif %}
+                {% if pregunta.opcion_d %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="p{{ pregunta.id }}" value="D" id="p{{ pregunta.id }}d">
+                    <label class="form-check-label w-100" for="p{{ pregunta.id }}d">{{ pregunta.opcion_d }}</label>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="text-center mt-4 pt-3">
+                <button type="submit" class="btn btn-gradient">Enviar evaluación</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Limpiar estilos por defecto de Django
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputs = document.querySelectorAll('.django-field-container input, .django-field-container select');
+        inputs.forEach(input => {
+            input.classList.add('form-control');
+        });
+    });
+</script>
+</body>
+</html>

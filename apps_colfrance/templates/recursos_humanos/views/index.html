@@ -3,158 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación Técnica - Limpieza y Desinfección</title>
-    
+    <title>Generador de Certificados Colfrance</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .header-section { background: linear-gradient(135deg, #0d6efd 0%, #003d99 100%); color: white; padding: 40px 0; border-radius: 0 0 30px 30px; margin-bottom: 30px; }
-        .question-box { background: #fff; border-left: 5px solid #0d6efd; padding: 20px; margin-bottom: 20px; border-radius: 8px; transition: 0.3s; }
-        .question-box:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .form-check-input:checked { background-color: #0d6efd; border-color: #0d6efd; }
-        .form-check-label { cursor: pointer; width: 100%; font-weight: 500; }
-        .form-check { padding: 10px 10px 10px 35px; border-radius: 5px; transition: background 0.2s; }
-        .form-check:hover { background-color: #f8f9fa; }
-        .card { border: none; border-radius: 15px; }
-        /* Estilos para campos de Django */
-        .django-field-container input, .django-field-container select {
-            border-radius: 8px;
-            padding: 10px;
-            border: 1px solid #dee2e6;
+        body { background-color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        
+        /* Nuevo Encabezado */
+        .header-section { 
+            background: linear-gradient(135deg, #0135e3 0%, #010fa8 100%); 
+            color: white; padding: 3rem 1.5rem; border-radius: 0 0 1.5rem 1.5rem; margin-bottom: 2.5rem; 
         }
+        
+        /* Nuevas Tarjetas */
+        .exam-card { 
+            border: 1px solid #e2e8f0; border-radius: 1rem; transition: 0.2s; background: white; padding: 2rem; 
+        }
+        .exam-card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); transform: translateY(-3px); }
+        
+        /* Icono Naranja/Rosa */
+        .icon-circle { 
+            background: linear-gradient(135deg, #fe8e5a 0%, #f9436e 100%); 
+            width: 3.5rem; height: 3.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            margin: 0 auto 1rem; color: white; font-size: 1.5rem; 
+        }
+        
+        /* Botón Azul */
+        .btn-gradient { 
+            background: linear-gradient(90deg, #0135e3 0%, #010fa8 100%); 
+            color: white; border-radius: 9999px; padding: 0.5rem 1.5rem; font-weight: 600; border: none; transition: 0.2s; 
+        }
+        .btn-gradient:hover { opacity: 0.9; color: white; }
     </style>
 </head>
 <body>
 
 <div class="header-section text-center shadow-sm">
-    <h1><i class="fas fa-clipboard-check"></i> Evaluación de Limpieza y Desinfección</h1>
-    <p class="lead mt-2">Complete sus datos y responda atentamente a cada pregunta.</p>
+    <h1 class="fw-bold"><i class="fas fa-clipboard-check me-2"></i>Generador de Certificados Colfrance</h1>
+    <p class="text-white-50 mt-2 text-sm">Seleccione la evaluación técnica que desea realizar.</p>
 </div>
 
 <div class="container mb-5">
-    <form method="POST">
-        {% csrf_token %}
+    <div class="row justify-content-center g-4">
         
-        <div class="card shadow-sm p-4 mb-4 border-0 rounded-4">
-            <h4 class="mb-4 text-primary"><i class="fas fa-user-circle"></i> Información Personal</h4>
-            <div class="row g-3 django-field-container">
-                {% for field in form %}
-                <div class="col-md-6">
-                    <label class="form-label fw-bold text-secondary">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.errors %}
-                        <div class="text-danger small mt-1">{{ field.errors|striptags }}</div>
-                    {% endif %}
+        {% for examen in examenes %}
+        <div class="col-md-5">
+            <div class="exam-card text-center h-100">
+                <div class="icon-circle">
+                    <i class="fas fa-clipboard-check"></i>
                 </div>
-                {% endfor %}
+                <h3 class="fw-bold text-dark fs-5 mb-2">{{ examen.nombre }}</h3>
+                <p class="text-muted small mb-4">
+                    Puntaje mínimo para aprobar: <strong class="text-dark">{{ examen.puntaje_minimo }}</strong>
+                </p>
+                <a href="{% url 'tomar_examen' examen.id %}" class="btn btn-gradient text-decoration-none d-inline-block">
+                    Ingresar al examen
+                </a>
             </div>
         </div>
-
-        <div class="card shadow-sm p-4 border-0 rounded-4">
-            <h4 class="mb-4 text-primary"><i class="fas fa-list-ol"></i> Cuestionario</h4>
-
-            <div class="question-box">
-                <h5 class="mb-3">1. ¿Cuál es el objetivo principal de la limpieza y desinfección?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="A" id="p1a" required><label class="form-check-label" for="p1a">A) Mejorar la apariencia de los equipos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="B" id="p1b"><label class="form-check-label" for="p1b">B) Eliminar suciedad y microorganismos para evitar contaminación de los alimentos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="C" id="p1c"><label class="form-check-label" for="p1c">C) Reducir el tiempo de producción</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="D" id="p1d"><label class="form-check-label" for="p1d">D) Evitar el desgaste de los equipos</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">2. ¿Cuál de los siguientes factores influye en la eficacia de la limpieza?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="A" id="p2a" required><label class="form-check-label" for="p2a">A) Tiempo</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="B" id="p2b"><label class="form-check-label" for="p2b">B) Temperatura</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="C" id="p2c"><label class="form-check-label" for="p2c">C) Producto químico</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="D" id="p2d"><label class="form-check-label" for="p2d">D) Acción mecánica</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="E" id="p2e"><label class="form-check-label" for="p2e">E) Todas las anteriores</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">3. ¿Qué debe hacerse antes de iniciar el proceso de desinfección?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="A" id="p3a" required><label class="form-check-label" for="p3a">A) Aplicar agua caliente</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="B" id="p3b"><label class="form-check-label" for="p3b">B) Realizar primero la limpieza del área o equipo</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="C" id="p3c"><label class="form-check-label" for="p3c">C) Aplicar desinfectante directamente</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="D" id="p3d"><label class="form-check-label" for="p3d">D) Secar la superficie</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">4. ¿Qué es el sistema CIP?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="A" id="p4a" required><label class="form-check-label" for="p4a">A) Limpieza manual de equipos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="B" id="p4b"><label class="form-check-label" for="p4b">B) Limpieza con cepillos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="C" id="p4c"><label class="form-check-label" for="p4c">C) Limpieza con vapor</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="D" id="p4d"><label class="form-check-label" for="p4d">D) Limpieza de equipos sin desmontarlos mediante circulación de soluciones de limpieza</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">5. ¿Por qué es importante usar los elementos de protección personal durante la limpieza?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="A" id="p5a" required><label class="form-check-label" for="p5a">A) Para cumplir una norma</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="B" id="p5b"><label class="form-check-label" for="p5b">B) Para terminar más rápido</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="C" id="p5c"><label class="form-check-label" for="p5c">C) Para evitar accidentes y contacto con sustancias químicas</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="D" id="p5d"><label class="form-check-label" for="p5d">D) No es necesario usarlos</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">6. ¿Qué norma establece los requisitos sanitarios para establecimientos de alimentos en Colombia?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="A" id="p6a" required><label class="form-check-label" for="p6a">A) Resolución 2674 de 2013</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="B" id="p6b"><label class="form-check-label" for="p6b">B) Decreto 1500</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="C" id="p6c"><label class="form-check-label" for="p6c">C) Resolución 5109</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="D" id="p6d"><label class="form-check-label" for="p6d">D) ISO 9001</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">7. ¿Qué significa CIP?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p7" value="A" id="p7a" required><label class="form-check-label" for="p7a">A) Limpieza in situ, es un método para limpiar equipos de producción y tuberías</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p7" value="B" id="p7b"><label class="form-check-label" for="p7b">B) Limpieza in situ... pero se deben desmontar los equipos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p7" value="C" id="p7c"><label class="form-check-label" for="p7c">C) Limpieza exterior de los equipos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p7" value="D" id="p7d"><label class="form-check-label" for="p7d">D) Limpieza con vapor y químicos</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">8. ¿A qué concentración se usa la soda cáustica y el ácido nítrico?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p8" value="A" id="p8a" required><label class="form-check-label" for="p8a">A) Soda 1,5% y ácido 2,5%</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p8" value="B" id="p8b"><label class="form-check-label" for="p8b">B) Soda 2,5% y ácido 1,5%</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p8" value="C" id="p8c"><label class="form-check-label" for="p8c">C) Soda 3% y ácido 2%</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p8" value="D" id="p8d"><label class="form-check-label" for="p8d">D) Soda 4% y ácido 3%</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">9. ¿Para qué se hace rotación de desinfectantes?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p9" value="A" id="p9a" required><label class="form-check-label" for="p9a">A) Para ahorrar en consumos</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p9" value="B" id="p9b"><label class="form-check-label" for="p9b">B) Para que la planta huela diferente</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p9" value="C" id="p9c"><label class="form-check-label" for="p9c">C) Para que los microorganismos no se vuelvan resistentes</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p9" value="D" id="p9d"><label class="form-check-label" for="p9d">D) Para no quedarnos sin stock en almacén</label></div>
-            </div>
-
-            <div class="question-box">
-                <h5 class="mb-3">10. ¿Cuáles son los métodos para realizar desinfecciones más comunes en la industria de alimentos?</h5>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p10" value="A" id="p10a" required><label class="form-check-label" for="p10a">A) Método gravitacional y método físico</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p10" value="B" id="p10b"><label class="form-check-label" for="p10b">B) Método Lean Manufacturing y método químico</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p10" value="C" id="p10c"><label class="form-check-label" for="p10c">C) Método Six sigma y método 5s</label></div>
-                <div class="form-check"><input class="form-check-input" type="radio" name="p10" value="D" id="p10d"><label class="form-check-label" for="p10d">D) Método físico y método químico</label></div>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-lg w-100 mt-4 rounded-pill fw-bold">
-                <i class="fas fa-paper-plane me-2"></i> Enviar Evaluación
-            </button>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <h4 class="text-muted">No hay exámenes disponibles.</h4>
         </div>
-    </form>
+        {% endfor %}
+
+    </div>
 </div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const inputs = document.querySelectorAll('.django-field-container input, .django-field-container select');
-        inputs.forEach(input => {
-            if (input.tagName === 'SELECT') {
-                input.classList.add('form-select');
-            } else {
-                input.classList.add('form-control');
-            }
-        });
-    });
-</script>
 
 </body>
 </html>

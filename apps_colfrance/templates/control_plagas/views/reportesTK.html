@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block vista_reportesTK %}
+  <div class="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+    {% include 'control_plagas/components/aside_menu.html' %}
+
+    <main class="flex-1 overflow-y-auto w-full">
+      <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 pt-16 md:pt-8 relative">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8">
+          <div class="flex flex-col xl:flex-row xl:items-center justify-between mb-6 md:mb-8 gap-4">
+            <h2 class="text-2xl font-bold text-gray-800">Gestión de Tickets de Plagas</h2>
+
+            <div class="flex flex-wrap items-center gap-2 bg-gray-50 p-1.5 rounded-xl border border-gray-200">
+              <button class="filter-btn active px-3 md:px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-colors bg-white text-gray-800 shadow-sm flex-1 sm:flex-none text-center" data-filter="all">Todos</button>
+              <button class="filter-btn px-3 md:px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 flex-1 sm:flex-none text-center" data-filter="alta">Alta</button>
+              <button class="filter-btn px-3 md:px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 flex-1 sm:flex-none text-center" data-filter="media">Media</button>
+              <button class="filter-btn px-3 md:px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 flex-1 sm:flex-none text-center" data-filter="baja">Baja</button>
+            </div>
+          </div>
+
+          <div class="relative mb-6">
+            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <input type="text" id="searchInput" placeholder="Buscar por cédula, área o plaga..." class="w-full pl-11 pr-4 py-3 text-sm md:text-base bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white transition-colors text-gray-700 font-medium" />
+          </div>
+
+          <div class="w-full">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b-2 border-gray-100 bg-white">
+                  <th class="md:hidden px-4 pb-3 font-bold text-gray-400 text-[10px] uppercase tracking-wider">Reporte</th>
+
+                  <th class="hidden md:table-cell pb-4 font-bold text-gray-400 text-xs uppercase tracking-wider pl-4">Fecha</th>
+                  <th class="hidden md:table-cell pb-4 font-bold text-gray-400 text-xs uppercase tracking-wider">Área Afectada</th>
+                  <th class="hidden md:table-cell pb-4 font-bold text-gray-400 text-xs uppercase tracking-wider">Plaga</th>
+                  <th class="hidden md:table-cell pb-4 font-bold text-gray-400 text-xs uppercase tracking-wider">Severidad</th>
+                  <th class="hidden md:table-cell pb-4 font-bold text-gray-400 text-xs uppercase tracking-wider text-center">Estado del Ticket</th>
+
+                  <th class="pb-3 md:pb-4 font-bold text-gray-400 text-[10px] md:text-xs uppercase tracking-wider text-right pr-4">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for reporte in reportes %}
+                  <tr class="report-row border-b border-gray-50 hover:bg-gray-50/50 transition-colors" data-severidad="{{ reporte.prioridad|lower }}">
+                    <td class="md:hidden px-4 py-4">
+                      <div class="flex flex-col gap-2">
+                        <div class="flex justify-between items-start">
+                          <span class="text-[10px] text-gray-400 font-bold">{{ reporte.fecha_hora|date:'d M Y' }}</span>
+                          {% if reporte.prioridad == 'Alta' %}
+                            <span class="bg-red-50 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold border border-red-100 uppercase">Alta</span>
+                          {% elif reporte.prioridad == 'Media' %}
+                            <span class="bg-yellow-50 text-yellow-600 px-2 py-0.5 rounded text-[10px] font-bold border border-yellow-100 uppercase">Media</span>
+                          {% else %}
+                            <span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold border border-green-100 uppercase">Baja</span>
+                          {% endif %}
+                        </div>
+
+                        <div>
+                          <p class="text-sm font-bold text-gray-800">{{ reporte.get_area_display }}</p>
+                          <p class="text-xs text-gray-600 font-medium">Plaga: {{ reporte.plaga }}</p>
+                          <p class="text-xs text-gray-400">Reporte: {{ reporte.cedula }}</p>
+                        </div>
+
+                        <div class="mt-1">
+                          {% with ticket=reporte.ticketplaga_set.first %}
+                            {% if ticket and ticket.estado %}
+                              <span class="inline-flex items-center gap-1 text-emerald-600 text-[10px] font-bold">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>Cerrado
+                              </span>
+                            {% elif ticket and not ticket.estado %}
+                              <span class="inline-flex items-center gap-1 text-blue-600 text-[10px] font-bold"><span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>En Proceso</span>
+                            {% else %}
+                              <span class="inline-flex items-center gap-1 text-orange-500 text-[10px] font-bold">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>Pendiente
+                              </span>
+                            {% endif %}
+                          {% endwith %}
+                        </div>
+                      </div>
+                    </td>
+
+                    <td class="hidden md:table-cell py-4 pl-4 text-gray-500 text-sm font-medium">{{ reporte.fecha_hora|date:'d M Y' }}</td>
+
+                    <td class="hidden md:table-cell py-4 searchable-area">
+                      <p class="text-gray-800 font-bold text-sm">{{ reporte.get_area_display }}</p>
+                      <p class="text-gray-400 text-xs searchable-cedula">Reporte: {{ reporte.cedula }}</p>
+                    </td>
+
+                    <td class="hidden md:table-cell py-4 text-gray-600 text-sm font-medium searchable-plaga">{{ reporte.plaga }}</td>
+
+                    <td class="hidden md:table-cell py-4">
+                      {% if reporte.prioridad == 'Alta' %}
+                        <span class="bg-red-50 text-red-600 px-3 py-1 rounded-md text-xs font-bold border border-red-100">Alta</span>
+                      {% elif reporte.prioridad == 'Media' %}
+                        <span class="bg-yellow-50 text-yellow-600 px-3 py-1 rounded-md text-xs font-bold border border-yellow-100">Media</span>
+                      {% else %}
+                        <span class="bg-green-50 text-green-600 px-3 py-1 rounded-md text-xs font-bold border border-green-100">Baja</span>
+                      {% endif %}
+                    </td>
+
+                    <td class="hidden md:table-cell py-4 text-center">
+                      {% with ticket=reporte.ticketplaga_set.first %}
+                        {% if ticket and ticket.estado %}
+                          <span class="inline-flex items-center gap-1 text-emerald-600 text-sm font-bold">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>Cerrado
+                          </span>
+                        {% elif ticket and not ticket.estado %}
+                          <span class="inline-flex items-center gap-1 text-blue-600 text-sm font-bold"><span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> En Proceso</span>
+                        {% else %}
+                          <span class="inline-flex items-center gap-1 text-orange-500 text-sm font-bold">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>Pendiente
+                          </span>
+                        {% endif %}
+                      {% endwith %}
+                    </td>
+
+                    <td class="py-4 text-right pr-4 align-middle">
+                      <a href="{% url 'control_plagas:detalle_ticket' reporte.id %}" class="inline-flex items-center justify-center gap-1 md:gap-2 bg-white border border-gray-200 text-gray-700 hover:border-green-500 hover:text-green-600 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-bold transition-all shadow-sm">
+                        Gestionar<svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                {% empty %}
+                  <tr>
+                    <td colspan="6" class="py-12 md:py-16 text-center text-gray-500">
+                      <div class="bg-gray-50 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                        <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                      </div>
+                      <p class="font-medium text-sm md:text-base text-gray-600">No hay tickets registrados en el sistema.</p>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const searchInput = document.getElementById('searchInput')
+      const rows = document.querySelectorAll('.report-row')
+      const filterBtns = document.querySelectorAll('.filter-btn')
+      let currentSeverityFilter = 'all'
+    
+      function applyFilters() {
+        const searchTerm = searchInput.value.toLowerCase()
+    
+        rows.forEach((row) => {
+          const rowSeverity = row.dataset.severidad
+          const matchesSeverity = currentSeverityFilter === 'all' || rowSeverity === currentSeverityFilter
+    
+          // El buscador sigue leyendo los datos ocultos de escritorio, por lo que la búsqueda funciona perfecto en móvil
+          const cedula = row.querySelector('.searchable-cedula').textContent.toLowerCase()
+          const area = row.querySelector('.searchable-area').textContent.toLowerCase()
+          const plaga = row.querySelector('.searchable-plaga').textContent.toLowerCase()
+          const matchesSearch = cedula.includes(searchTerm) || area.includes(searchTerm) || plaga.includes(searchTerm)
+    
+          if (matchesSeverity && matchesSearch) {
+            row.style.display = ''
+          } else {
+            row.style.display = 'none'
+          }
+        })
+      }
+    
+      searchInput.addEventListener('keyup', applyFilters)
+    
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          filterBtns.forEach((b) => {
+            b.classList.remove('bg-white', 'text-gray-800', 'shadow-sm', 'active')
+            b.classList.add('text-gray-500')
+          })
+    
+          this.classList.remove('text-gray-500')
+          this.classList.add('bg-white', 'text-gray-800', 'shadow-sm', 'active')
+    
+          currentSeverityFilter = this.dataset.filter
+          applyFilters()
+        })
+      })
+    })
+  </script>
+{% endblock %}

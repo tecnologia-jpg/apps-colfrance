@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block login_control_colab %}
+  {% load static %}
+  <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 p-4">
+    <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md relative overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-green-50 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+      <div class="flex justify-center mb-6 relative z-10">
+        <img src="{% static 'app_control/icons/logo_ambiental.png' %}" alt="Logo Ambiental Colfrance" class="h-56 object-contain" />
+      </div>
+
+      <h1 class="text-center text-3xl font-bold text-gray-800 mb-2 relative z-10">Departamento Ambiental</h1>
+      <p class="text-center text-gray-600 mb-8 relative z-10">Acceso exclusivo para colaboradores</p>
+
+      <form method="POST" action="" class="space-y-6 relative z-10">
+        {% csrf_token %}
+
+        <div>
+          <label for="documento" class="block text-gray-700 mb-2 font-medium">Número de Documento</label>
+          <div class="relative group">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none transition-colors group-focus-within:text-green-500">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400 group-focus-within:text-green-500 transition-colors">
+                <path d="M16 10h2" />
+                <path d="M16 14h2" />
+                <path d="M6.17 15a3 3 0 0 1 5.66 0" />
+                <circle cx="9" cy="11" r="2" />
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+              </svg>
+            </div>
+            <input type="text" id="documento" name="documento" class="w-full pl-10 pr-4 py-3 bg-gray-100/50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all" placeholder="Ej. 1020304050" required autocomplete="off" pattern="[0-9]+" title="Por favor ingrese solo números" />
+          </div>
+        </div>
+
+        <button type="submit" class="w-full flex justify-center items-center gap-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-3 rounded-lg font-semibold hover:from-green-700 hover:to-emerald-700 transition-colors shadow-lg">
+          Ingresar al Sistema<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="mt-8 pt-6 text-center border-t border-gray-100 relative z-10">
+        <p class="text-sm text-gray-600">
+          ©{% now 'Y' %}Colfrance
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

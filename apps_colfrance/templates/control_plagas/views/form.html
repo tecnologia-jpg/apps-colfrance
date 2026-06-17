@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+
+{% block dashboard %}
+  <div class="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+    {% include 'control_plagas/components/aside_menu.html' %}
+
+    <main class="flex-1 overflow-y-auto w-full">
+      <div class="space-y-6 p-4 sm:p-6 lg:p-8">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3 pt-12 md:pt-0">
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-tight">Registrar Nueva Plaga</h2>
+          <span class="text-xs sm:text-sm text-gray-500 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100 w-max">{% now 'F Y' %}</span>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm p-5 md:p-8 border border-gray-100 max-w-5xl mx-auto w-full">
+          <div class="mb-6 md:mb-8 flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+            <h3 class="text-gray-800 font-bold text-lg">Detalles del Reporte</h3>
+          </div>
+
+          <form action="" method="POST" enctype="multipart/form-data" class="space-y-6 md:space-y-8">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              
+              <div>
+                <label for="cedula" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Cédula del Reportante</label>
+                <input type="text" name="cedula" id="cedula" required 
+                  {% if request.session.colaborador %}
+                    value="{{ request.session.colaborador.documento }}" readonly
+                  {% endif %}
+                  class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all shadow-sm {% if request.session.colaborador %}cursor-not-allowed opacity-80{% endif %}" 
+                  placeholder="Ej. 1234567890" />
+              </div>
+
+              <div>
+                <label for="area" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Área Afectada</label>
+                <div class="relative">
+                  <select name="area" id="area" required class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 outline-none transition-all shadow-sm appearance-none">
+                    <option value="">Seleccione un área...</option>
+                    <option value="FERMENTOS">Fermentos</option>
+                    <option value="CAVAS">Cavas</option>
+                    <option value="MUELLE DE CARGA">Muelle de Carga</option>
+                    <option value="PASTEURIZACIÓN">Pasteurización</option>
+                    <option value="MEZCLAS">Mezclas</option>
+                    <option value="UHT">UHT</option>
+                    <option value="QUESERA">Quesera</option>
+                    <option value="BODEGA LOGISTICA">Bodega Logística</option>
+                    <option value="CUARTOS FRIOS PRODUCTO TERMINADO">Cuartos Fríos Producto Terminado</option>
+                    <option value="BODEGA MATERIA PRIMA">Bodega Materia Prima</option>
+                    <option value="ACOPIO RESIDUOS SÓLIDOS">Acopio Residuos Sólidos</option>
+                    <option value="PULVERIZADORA">Pulverizadora</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="prioridad" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Severidad</label>
+                <div class="relative">
+                  <select name="prioridad" id="prioridad" required class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-all shadow-sm appearance-none">
+                    <option value="">Seleccione severidad...</option>
+                    <option value="Alta">Alta</option>
+                    <option value="Media">Media</option>
+                    <option value="Baja">Baja</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="tipo_plaga" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Categoría de Plaga</label>
+                <div class="relative">
+                  <select name="tipo_plaga" id="tipo_plaga" required class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all shadow-sm appearance-none">
+                    <option value="">Seleccione categoría...</option>
+                    <option value="Rastreras">Plagas rastreras</option>
+                    <option value="Voladoras">Plagas voladoras</option>
+                    <option value="Roedoras">Plagas roedoras</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div class="md:col-span-2">
+                <label for="plaga" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Plaga (Específica)</label>
+                <div class="relative">
+                  <select name="plaga" id="plaga" required class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all shadow-sm appearance-none">
+                    <option value="">Seleccione plaga específica...</option>
+                    <optgroup label="Rastreras">
+                      <option value="Cucarachas">Cucarachas</option>
+                      <option value="Hormigas">Hormigas</option>
+                      <option value="Escarabajos">Escarabajos</option>
+                      <option value="Arañas">Arañas</option>
+                      <option value="Lepismas">Lepismas (pececillos de plata)</option>
+                    </optgroup>
+                    <optgroup label="Voladoras">
+                      <option value="Moscas">Moscas</option>
+                      <option value="Mosquitos">Mosquitos</option>
+                      <option value="Polillas">Polillas</option>
+                      <option value="Avispas">Avispas</option>
+                      <option value="Abejas">Abejas</option>
+                    </optgroup>
+                    <optgroup label="Roedoras">
+                      <option value="Ratón doméstico">Ratón doméstico</option>
+                      <option value="Rata gris">Rata gris</option>
+                      <option value="Rata negra">Rata negra</option>
+                    </optgroup>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label for="descripcion" class="block text-gray-500 text-xs font-bold uppercase tracking-wider mb-2">Descripción del Problema</label>
+              <textarea name="descripcion" id="descripcion" rows="4" required class="w-full rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-gray-900 font-medium focus:bg-white focus:ring-2 focus:ring-green-500 focus:border-green-500 outline-none transition-all shadow-sm resize-none" placeholder="Proporcione los detalles observados (ubicación exacta, cantidad aproximada, etc)..."></textarea>
+            </div>
+
+            <div id="dropzone" class="relative border-2 border-dashed border-gray-300 bg-gray-50/50 hover:bg-green-50/30 hover:border-green-500 rounded-3xl p-6 md:p-10 text-center transition-all duration-300 group cursor-pointer overflow-hidden">
+              <div class="bg-white border border-gray-200 shadow-sm w-12 h-12 md:w-16 md:h-16 mx-auto rounded-full flex items-center justify-center mb-4 md:mb-5 text-green-600 group-hover:scale-110 transition-transform duration-300 relative z-10">
+                <svg id="upload-icon" class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                </svg>
+              </div>
+
+              <div class="relative z-10 flex flex-col items-center">
+                <label for="evidencia" class="relative cursor-pointer focus-within:outline-none mb-2 md:mb-3">
+                  <span id="file-name-display" class="inline-block bg-white border border-gray-200 text-green-600 font-bold px-4 md:px-6 py-2 md:py-2.5 text-sm md:text-base rounded-xl shadow-sm group-hover:shadow-md group-hover:border-green-400 transition-all text-center break-all max-w-[250px] md:max-w-md">Explorar archivos...</span>
+                  <input id="evidencia" name="evidencia" type="file" class="sr-only" accept=".png, .jpg, .jpeg, .pdf" />
+                </label>
+
+                <p id="drag-text" class="text-gray-500 font-medium text-xs md:text-sm">o arrastra y suelta tu evidencia aquí</p>
+
+                <div class="w-12 h-1 bg-gray-200 rounded-full my-3 group-hover:bg-green-300 transition-colors"></div>
+
+                <p class="text-[10px] md:text-xs text-gray-400 font-medium uppercase tracking-wide px-2">Formatos: PNG, JPG, PDF (Max 10MB)</p>
+              </div>
+
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent to-green-50/20 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+            </div>
+
+            <div class="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 pt-4">
+              <button type="button" onclick="history.back()" class="w-full sm:w-auto px-6 py-3 border border-gray-200 bg-white rounded-xl text-gray-700 font-bold hover:bg-gray-50 hover:shadow-sm transition-all text-center">Cancelar</button>
+              
+              <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-green-600 to-emerald-700 text-white rounded-xl font-bold hover:shadow-lg transition-all flex items-center justify-center gap-2">
+                Registrar Plaga
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const fileInput = document.getElementById('evidencia')
+      const fileNameDisplay = document.getElementById('file-name-display')
+      const dragText = document.getElementById('drag-text')
+    
+      fileInput.addEventListener('change', function () {
+        if (fileInput.files && fileInput.files.length > 0) {
+          let fileName = fileInput.files[0].name 
+          
+          // Truncamos el nombre si es muy largo para que no rompa el botón en móviles
+          if(fileName.length > 25) {
+             fileName = fileName.substring(0, 12) + '...' + fileName.substring(fileName.length - 8);
+          }
+    
+          fileNameDisplay.textContent = '📄 ' + fileName
+          fileNameDisplay.classList.replace('text-green-600', 'text-gray-800')
+          fileNameDisplay.classList.replace('border-gray-200', 'border-green-500')
+          fileNameDisplay.classList.add('bg-green-50')
+          dragText.style.display = 'none'
+        } else {
+          fileNameDisplay.textContent = 'Explorar archivos...'
+          fileNameDisplay.classList.replace('text-gray-800', 'text-green-600')
+          fileNameDisplay.classList.replace('border-green-500', 'border-gray-200')
+          fileNameDisplay.classList.remove('bg-green-50')
+          dragText.style.display = 'block'
+        }
+      })
+    })
+  </script>
+{% endblock %}

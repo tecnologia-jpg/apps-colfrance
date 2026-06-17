@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firmar Acta</title>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.1.7/dist/signature_pad.umd.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      .contenedor-firma {
+        border: 2px dashed #ccc;
+        width: 500px;
+        height: 200px;
+        margin-bottom: 10px;
+        position: relative;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button.limpiar {
+        background-color: #dc3545;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Firme el Acta para continuar</h2>
+    <p>Por favor, dibuje su firma en el recuadro inferior:</p>
+
+    <form id="form-acta" method="POST" action="{% url 'tecnologia:generar-acta' %}">
+      {% csrf_token %}
+
+      <div class="contenedor-firma">
+        <canvas id="firma-canvas"></canvas>
+      </div>
+
+      <input type="hidden" name="firma_base64" id="firma_base64" />
+
+      <button type="button" class="limpiar" onclick="limpiarFirma()">Limpiar Firma</button>
+      <button type="button" onclick="enviarFormulario()">Generar PDF con Firma</button>
+    </form>
+
+    <script>
+      // Inicializar el lienzo
+      const canvas = document.getElementById('firma-canvas')
+      
+      // Ajustar la resolución del canvas para que el trazo sea nítido
+      function redimensionarCanvas() {
+        const ratio = Math.max(window.devicePixelRatio || 1, 1)
+        canvas.width = canvas.offsetWidth * ratio
+        canvas.height = canvas.offsetHeight * ratio
+        canvas.getContext('2d').scale(ratio, ratio)
+      }
+      window.onresize = redimensionarCanvas
+      redimensionarCanvas()
+      
+      const signaturePad = new SignaturePad(canvas, {
+        penColor: 'rgb(0, 0, 0)',
+        backgroundColor: 'rgba(255, 255, 255, 0)' // Fondo transparente
+      })
+      
+      function limpiarFirma() {
+        signaturePad.clear()
+      }
+      
+      function enviarFormulario() {
+        if (signaturePad.isEmpty()) {
+          alert('Por favor, dibuje su firma antes de continuar.')
+          return
+        }
+      
+        // Obtener la imagen en formato Base64
+        const base64Data = signaturePad.toDataURL('image/png')
+      
+        // Asignarla al input oculto
+        document.getElementById('firma_base64').value = base64Data
+      
+        // Enviar el formulario
+        document.getElementById('form-acta').submit()
+      }
+    </script>
+  </body>
+</html>

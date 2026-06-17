@@ -1,0 +1,97 @@
+<button id="mobileMenuBtn" class="md:hidden fixed top-4 right-4 z-50 bg-green-600 text-white p-2.5 rounded-xl shadow-lg hover:bg-green-700 transition-colors">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+  </svg>
+</button>
+
+<div id="sidebarOverlay" class="fixed inset-0 bg-black/50 z-30 hidden transition-opacity md:hidden"></div>
+
+<aside id="sidebar" class="w-64 bg-white shadow-xl h-screen fixed md:sticky top-0 left-0 flex flex-col z-40 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out">
+  
+  <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+    <div class="flex items-center gap-3">
+      <div class="bg-green-600 p-2 rounded-lg text-white">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+        </svg>
+      </div>
+      <div>
+        <h1 class="text-green-600 font-bold text-lg leading-tight">Control de Plagas</h1>
+        <p class="text-gray-400 text-xs font-medium">Panel de Gestión</p>
+      </div>
+    </div>
+    <button id="closeMenuBtn" class="md:hidden text-gray-400 hover:text-red-500 transition-colors">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex-1 p-4 space-y-2 overflow-y-auto">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'control_plagas:dashboard_view' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all bg-green-50 text-green-600 font-semibold shadow-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+        </svg>Dashboard
+      </a>
+    {% elif request.session.colaborador %}
+      <a href="{% url 'control_plagas:dashboard_colaborador' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all bg-green-50 text-green-600 font-semibold shadow-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+        </svg>Dashboard
+      </a>
+    {% endif %}
+
+    <a href="{% url 'control_plagas:view_form' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-600 hover:bg-gray-50 hover:text-green-600">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>Nuevo Reporte
+    </a>
+    
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'control_plagas:reportesTK_view' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-600 hover:bg-gray-50 hover:text-green-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>Ver Reportes (TICKETS)
+      </a>
+    {% endif %}
+  </nav>
+
+  <div class="p-4 border-t border-gray-100">
+    {% if request.user.is_authenticated %}
+      <a href="{% url 'control_plagas:logout_control' %}" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg>
+        Cerrar Sesión
+      </a>
+    {% elif request.session.colaborador %}
+      <a href="{% url 'control_plagas:logout_colab' %}" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+        </svg>
+        Cerrar Sesión
+      </a>
+    {% endif %}
+  </div>
+</aside>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btnOpen = document.getElementById('mobileMenuBtn');
+    const btnClose = document.getElementById('closeMenuBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function toggleMenu() {
+      sidebar.classList.toggle('-translate-x-full');
+      overlay.classList.toggle('hidden');
+    }
+
+    btnOpen.addEventListener('click', toggleMenu);
+    btnClose.addEventListener('click', toggleMenu);
+    
+    // Cerrar el menú si hacen clic en el fondo oscuro
+    overlay.addEventListener('click', toggleMenu);
+  });
+</script>

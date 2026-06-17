@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación - Buenas Prácticas Higiénicas (BPH)</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .header-section { background: linear-gradient(135deg, #198754 0%, #0f5132 100%); color: white; padding: 40px 0; border-radius: 0 0 30px 30px; margin-bottom: 30px; }
+        .question-box { background: #fff; border-left: 5px solid #198754; padding: 20px; margin-bottom: 20px; border-radius: 8px; transition: 0.3s; }
+        .question-box:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .form-check-input:checked { background-color: #198754; border-color: #198754; }
+        .form-check-label { cursor: pointer; width: 100%; font-weight: 500; }
+        .form-check { padding: 10px 10px 10px 35px; border-radius: 5px; transition: background 0.2s; }
+        .form-check:hover { background-color: #f8f9fa; }
+        .card { border: none; border-radius: 15px; }
+        .django-field-container input, .django-field-container select { border-radius: 8px; padding: 10px; border: 1px solid #dee2e6; }
+    </style>
+</head>
+<body>
+
+<div class="header-section text-center shadow-sm">
+    <h1><i class="fas fa-hands-wash"></i> Buenas Prácticas Higiénicas (BPH)</h1>
+    <p class="lead mt-2">Complete sus datos y responda atentamente a cada pregunta.</p>
+</div>
+
+<div class="container mb-5">
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="card shadow-sm p-4 mb-4 border-0 rounded-4">
+            <h4 class="mb-4 text-success"><i class="fas fa-user-circle"></i> Información Personal</h4>
+            <div class="row g-3 django-field-container">
+                {% for field in form %}
+                <div class="col-md-6">
+                    <label class="form-label fw-bold text-secondary">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors|striptags }}</div>{% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="card shadow-sm p-4 border-0 rounded-4">
+            <h4 class="mb-4 text-success"><i class="fas fa-list-ol"></i> Cuestionario BPH</h4>
+
+            <div class="question-box">
+                <h5 class="mb-3">1. ¿Qué significa BPH?</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="A" id="p1a" required><label class="form-check-label" for="p1a">A) Buenas prácticas hogareñas</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="B" id="p1b"><label class="form-check-label" for="p1b">B) Las BPH son todas las prácticas referidas a las condiciones y medidas de sanidad e higiene necesarias para asegurar la inocuidad.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="C" id="p1c"><label class="form-check-label" for="p1c">C) Son un conjunto de principios básicos cuyo objetivo es garantizar la salud.</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p1" value="D" id="p1d"><label class="form-check-label" for="p1d">D) Son prácticas que garantizan la seguridad y salud en el trabajo.</label></div>
+            </div>
+
+            <div class="question-box">
+                <h5 class="mb-3">2. ¿Qué es la contaminación cruzada?</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="A" id="p2a" required><label class="form-check-label" for="p2a">A) Es el paso de contaminantes de unos alimentos a otros (ej. mezclar crudos y cocinados).</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="B" id="p2b"><label class="form-check-label" for="p2b">B) Es pasar contaminación química a biológica</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="C" id="p2c"><label class="form-check-label" for="p2c">C) Es el paso de contaminantes físicos de un alimento</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p2" value="D" id="p2d"><label class="form-check-label" for="p2d">D) Es la contaminación por productos químicos en el área</label></div>
+            </div>
+
+            <div class="question-box">
+                <h5 class="mb-3">3. ¿Quiénes deben cumplir las BPH?</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="A" id="p3a" required><label class="form-check-label" for="p3a">A) Personal de calidad</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="B" id="p3b"><label class="form-check-label" for="p3b">B) Algunos</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="C" id="p3c"><label class="form-check-label" for="p3c">C) Los que quieran</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p3" value="D" id="p3d"><label class="form-check-label" for="p3d">D) Todos los manipuladores de alimentos</label></div>
+            </div>
+
+            <div class="question-box">
+                <h5 class="mb-3">4. ¿Qué color son los días pares y qué color son los días impares?</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="A" id="p4a" required><label class="form-check-label" for="p4a">A) Par rojo e impar azul</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p4" value="B" id="p4b"><label class="form-check-label" for="p4b">B) Par azul e impar rojo</label></div>
+            </div>
+
+            <div class="question-box">
+                <h5 class="mb-3">5. En Productos Lácteos Colfrance se prohíbe:</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="A" id="p5a" required><label class="form-check-label" for="p5a">A) El uso de ropa de calle por debajo del uniforme</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="B" id="p5b"><label class="form-check-label" for="p5b">B) Uso de camiseta de otro color diferente a blanco</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="C" id="p5c"><label class="form-check-label" for="p5c">C) Uso de maquillaje</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p5" value="D" id="p5d"><label class="form-check-label" for="p5d">D) Todas las anteriores</label></div>
+            </div>
+
+            <div class="question-box">
+                <h5 class="mb-3">6. ¿Qué puede ocurrir si no se cumplen las BPH?</h5>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="A" id="p6a" required><label class="form-check-label" for="p6a">A) No trae consecuencias</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="B" id="p6b"><label class="form-check-label" for="p6b">B) Es algo positivo para el alimento</label></div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="p6" value="C" id="p6c"><label class="form-check-label" for="p6c">C) Los alimentos pueden contaminarse y causar enfermedades en los consumidores.</label></div>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg w-100 mt-4 rounded-pill fw-bold">
+                <i class="fas fa-paper-plane me-2"></i> Enviar Evaluación
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const inputs = document.querySelectorAll('.django-field-container input, .django-field-container select');
+        inputs.forEach(input => {
+            if (input.tagName === 'SELECT') {
+                input.classList.add('form-select');
+            } else {
+                input.classList.add('form-control');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

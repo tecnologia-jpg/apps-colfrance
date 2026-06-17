@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+
+{% block detalle_ticket %}
+  <div class="min-h-screen bg-gray-50 flex">
+    {% include 'control_plagas/components/aside_menu.html' %}
+
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center gap-4">
+          <a href="{% url 'control_plagas:reportesTK_view' %}" class="bg-white border border-gray-200 text-gray-600 hover:text-green-600 p-2 rounded-xl shadow-sm transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+          </a>
+          <h2 class="text-2xl font-bold text-gray-800">
+            Ticket #{{ ticket.id }}
+            {% if ticket.estado %}
+              <span class="ml-2 bg-emerald-100 text-emerald-700 text-sm px-3 py-1 rounded-full align-middle">Completado</span>
+            {% else %}
+              <span class="ml-2 bg-blue-100 text-blue-700 text-sm px-3 py-1 rounded-full align-middle animate-pulse">En Proceso</span>
+            {% endif %}
+          </h2>
+        </div>
+        <p class="text-sm text-gray-500 font-medium">Reportado: {{ reporte.fecha_hora|date:'d M Y, h:i a' }}</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="space-y-6">
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2">Información del Reporte</h3>
+
+            <div class="space-y-4">
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Reportante</p>
+                <p class="text-gray-900 font-medium">{{ reporte.cedula }}</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Área</p>
+                  <p class="text-gray-900 font-medium">{{ reporte.get_area_display }}</p>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Severidad</p>
+                  <p class="text-red-600 font-bold">{{ reporte.prioridad }}</p>
+                </div>
+              </div>
+
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Plaga Encontrada</p>
+                <p class="text-gray-900 font-medium">{{ reporte.tipo_plaga }} - {{ reporte.plaga }}</p>
+              </div>
+
+              <div>
+                <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-1">Descripción</p>
+                <p class="text-gray-700 text-sm bg-gray-50 p-3 rounded-lg">{{ reporte.descripcion }}</p>
+              </div>
+
+              {% if reporte.evidencia %}
+                <div>
+                  <p class="text-xs text-gray-500 uppercase font-bold tracking-wider mb-2">Evidencia del Usuario</p>
+                  <a href="{{ reporte.evidencia.url }}" target="_blank" class="inline-flex items-center gap-2 text-sm text-green-600 bg-green-50 px-4 py-2 rounded-lg font-bold w-full justify-center hover:bg-green-100 transition-colors">
+                    Ver Archivo Adjunto<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                    </svg>
+                  </a>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 border-b border-gray-100 pb-2">Gestión Operativa</h3>
+
+            <form method="POST" action="">
+              {% csrf_token %}
+              <input type="hidden" name="cambiar_estado" value="1" />
+
+              {% if not ticket.estado %}
+                {% if not request.session.colaborador %}
+                  <input type="hidden" name="nuevo_estado" value="True" />
+                  <label class="block text-xs text-gray-500 uppercase font-bold tracking-wider mb-2">Solución Aplicada (Requerido para cerrar)</label>
+                  <textarea name="descripcion_solucion" rows="3" required class="w-full bg-gray-50 border border-gray-200 rounded-lg p-3 text-sm focus:ring-2 focus:ring-green-500 outline-none mb-4" placeholder="Ej: Se instalaron 3 cebos y se selló la grieta..."></textarea>
+
+                  <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>Cerrar Ticket (Completado)
+                  </button>
+                {% else %}
+                  <div class="bg-gray-50 p-4 rounded-xl mb-4 text-sm">
+                    <p class="font-medium text-gray-800">Aún no se ha dado solucion al ticket.</p>
+                  </div>
+                {% endif %}
+              {% else %}
+                <input type="hidden" name="nuevo_estado" value="False" />
+                <div class="bg-gray-50 p-4 rounded-xl mb-4 text-sm">
+                  <p class="text-gray-500 mb-1">Solución aplicada el {{ ticket.hora_final|date:'d/m/Y' }}:</p>
+                  <p class="font-medium text-gray-800">{{ ticket.descripcion_solucion }}</p>
+                </div>
+
+                {% if not request.session.colaborador %}
+                  <button type="submit" class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 rounded-xl transition-colors shadow-sm flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>Reabrir Ticket
+                  </button>
+                {% endif %}
+              {% endif %}
+            </form>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col overflow-hidden h-[800px]">
+          <div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+            <h3 class="text-lg font-bold text-gray-800">Historial de Intervenciones</h3>
+            <span class="text-xs bg-white px-3 py-1 rounded-full border border-gray-200 text-gray-500 shadow-sm">Técnico Asignado: {{ ticket.usuario_asignado.username|default:'No asignado' }}</span>
+          </div>
+
+          <div class="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50">
+            <div class="flex justify-center">
+              <span class="text-xs bg-gray-200 text-gray-600 px-4 py-1.5 rounded-full font-medium">Ticket creado el {{ ticket.hora_inicio|date:'d M Y' }}</span>
+            </div>
+
+            {% for mensaje in mensajes %}
+              {% if mensaje.usuario_rol == 'administrador' and es_admin or mensaje.usuario_rol == 'colaborador' and not es_admin %}
+                <div class="flex flex-col items-end">
+                  <div class="bg-green-100 text-green-900 rounded-2xl rounded-tr-sm px-5 py-3 max-w-[80%] shadow-sm border border-green-200">
+                    <p class="text-sm whitespace-pre-wrap">{{ mensaje.mensaje }}</p>
+
+                    {% if mensaje.media %}
+                      <div class="mt-3">
+                        <a href="{{ mensaje.media.url }}" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-green-700 bg-white/50 hover:bg-white px-3 py-1.5 rounded-lg transition-colors border border-green-200">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                          </svg>Ver archivo adjunto
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <span class="text-[10px] text-gray-400 mt-1 mr-1">Mensaje enviado por: {{ mensaje.usuario }}</span>
+                  <span class="text-[10px] text-gray-400 mt-1 mr-1">{{ mensaje.fecha|date:'d M Y, h:i a' }}</span>
+                </div>
+              {% else %}
+                {% comment %}visualizacion de mensajes de colaboradores{% endcomment %}
+                <div class="flex flex-col items-start">
+                  <div class="bg-emerald-200 text-green-900 rounded-2xl rounded-tr-sm px-5 py-3 max-w-[80%] shadow-sm border border-green-200">
+                    <p class="text-sm whitespace-pre-wrap">{{ mensaje.mensaje }}</p>
+
+                    {% if mensaje.media %}
+                      <div class="mt-3">
+                        <a href="{{ mensaje.media.url }}" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-green-700 bg-white/50 hover:bg-white px-3 py-1.5 rounded-lg transition-colors border border-green-200">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                          </svg>Ver archivo adjunto
+                        </a>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <span class="text-[10px] text-gray-400 mt-1 mr-1">Mensaje enviado por: {{ mensaje.usuario }}</span>
+                  <span class="text-[10px] text-gray-400 mt-1 mr-1">{{ mensaje.fecha|date:'d M Y, h:i a' }}</span>
+                </div>
+              {% endif %}
+            {% empty %}
+              <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                <svg class="w-12 h-12 mb-3 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                </svg>
+                <p class="text-sm">No hay intervenciones registradas aún.</p>
+              </div>
+            {% endfor %}
+          </div>
+
+          {% if not ticket.estado %}
+            <div class="p-4 bg-white border-t border-gray-100">
+              <form method="POST" action="" enctype="multipart/form-data" class="flex items-end gap-3">
+                {% csrf_token %}
+                <input type="hidden" name="enviar_mensaje" value="1" />
+
+                <label class="cursor-pointer text-gray-400 hover:text-green-600 transition-colors p-2 bg-gray-50 rounded-full hover:bg-green-50">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                  </svg>
+                  <input type="file" name="media" class="hidden" />
+                </label>
+
+                <div class="flex-1 bg-gray-50 rounded-xl border border-gray-200 focus-within:ring-2 focus-within:ring-green-500 focus-within:border-green-500 transition-all">
+                  <textarea name="mensaje" rows="1" placeholder="Escribe una actualización o intervención..." class="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-4 text-sm" required></textarea>
+                </div>
+
+                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white p-3 rounded-full transition-colors shadow-md">
+                  <svg class="w-5 h-5 transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
+          {% else %}
+            <div class="p-4 bg-gray-100 border-t border-gray-200 text-center">
+              <p class="text-sm text-gray-500 font-medium">El ticket está cerrado. Reábrelo para agregar más intervenciones.</p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}

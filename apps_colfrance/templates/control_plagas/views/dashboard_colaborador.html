@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block dashboard_colaborador %}
+  <div class="min-h-screen bg-gray-50 flex flex-col md:flex-row">
+    {% include 'control_plagas/components/aside_menu.html' %}
+
+    <main class="flex-1 overflow-y-auto w-full">
+      <div class="space-y-6 md:space-y-8 p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2 pt-12 md:pt-0">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-800 tracking-tight">Hola, {{ request.session.colaborador.nombre }} 👋</h2>
+            <p class="text-gray-500 mt-1 md:mt-2 text-sm md:text-base font-medium">Gestiona tus reportes de plagas de forma rápida y segura.</p>
+          </div>
+          <span class="text-xs sm:text-sm text-green-700 bg-green-100 px-4 py-2 rounded-full shadow-sm font-bold border border-green-200 w-max">Cédula: {{ request.session.colaborador.documento }}</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <a href="{% url 'control_plagas:view_form' %}" class="group relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl shadow-md p-5 md:p-6 hover:shadow-xl transition-all overflow-hidden flex items-center justify-between">
+            <div class="relative z-10">
+              <p class="text-green-50 text-xs md:text-sm font-bold uppercase tracking-wider mb-1">Nueva Incidencia</p>
+              <h3 class="text-xl md:text-2xl font-black text-white">Crear Reporte</h3>
+            </div>
+            <div class="relative z-10 bg-white/20 p-3 md:p-4 rounded-full text-white group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300">
+              <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </div>
+            <div class="absolute -right-6 -top-6 w-24 h-24 md:w-32 md:h-32 bg-white opacity-10 rounded-full"></div>
+          </a>
+
+          <a href="#" class="group relative bg-white border-2 border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 hover:border-blue-400 hover:shadow-md transition-all overflow-hidden flex items-center justify-between">
+            <div class="relative z-10">
+              <p class="text-gray-500 text-xs md:text-sm font-bold uppercase tracking-wider mb-1">¿Necesitas Ayuda?</p>
+              <h3 class="text-xl md:text-2xl font-black text-gray-800">Contactar Soporte</h3>
+            </div>
+            <div class="relative z-10 bg-blue-50 p-3 md:p-4 rounded-full text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-colors duration-300">
+              <svg class="w-6 h-6 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 md:p-8">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 md:mb-6 gap-2">
+            <h3 class="text-lg md:text-xl font-bold text-gray-800">Mis Reportes Recientes</h3>
+          </div>
+
+          <div class="relative w-full">
+            <div class="absolute inset-y-0 right-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none md:hidden z-10"></div>
+
+            <div class="w-full">
+              <table class="w-full text-left border-collapse">
+                <thead>
+                  <tr class="border-b-2 border-gray-100 bg-white">
+                    <th class="md:hidden px-4 pb-3 font-bold text-gray-500 text-[10px] uppercase tracking-wider">Reporte</th>
+
+                    <th class="hidden md:table-cell px-2 pb-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Fecha</th>
+                    <th class="hidden md:table-cell px-2 pb-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Área</th>
+                    <th class="hidden md:table-cell px-2 pb-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Plaga</th>
+                    <th class="hidden md:table-cell px-2 pb-4 font-bold text-gray-500 text-xs uppercase tracking-wider">Severidad</th>
+                    <th class="hidden md:table-cell px-2 pb-4 font-bold text-gray-500 text-xs uppercase tracking-wider text-center">Estado</th>
+
+                    <th class="px-4 md:px-2 pb-3 md:pb-4 font-bold text-gray-500 text-[10px] md:text-xs uppercase tracking-wider text-right">Seguimiento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for reporte in reportes %}
+                    <tr class="border-b border-gray-50 hover:bg-gray-50/50 transition-colors group">
+                      <td class="md:hidden px-4 py-3">
+                        <div class="flex flex-col gap-1">
+                          <span class="text-[10px] text-gray-400 font-bold">{{ reporte.fecha_hora|date:'d M Y' }}</span>
+                          <span class="text-sm font-bold text-gray-800">{{ reporte.get_area_display }}</span>
+                          <span class="text-xs text-gray-600">{{ reporte.plaga }}</span>
+                        </div>
+                      </td>
+
+                      <td class="hidden md:table-cell px-2 py-4 text-gray-600 text-sm font-medium">{{ reporte.fecha_hora|date:'d M Y' }}</td>
+
+                      <td class="hidden md:table-cell px-2 py-4">
+                        <span class="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-md text-xs font-bold">{{ reporte.get_area_display }}</span>
+                      </td>
+
+                      <td class="hidden md:table-cell px-2 py-4 text-gray-800 text-sm font-medium">{{ reporte.plaga }}</td>
+
+                      <td class="hidden md:table-cell px-2 py-4">
+                        {% if reporte.prioridad == 'Alta' %}
+                          <span class="bg-red-50 text-red-600 px-2.5 py-1 rounded text-xs font-bold border border-red-100 uppercase">Alta</span>
+                        {% elif reporte.prioridad == 'Media' %}
+                          <span class="bg-yellow-50 text-yellow-600 px-2.5 py-1 rounded text-xs font-bold border border-yellow-100 uppercase">Media</span>
+                        {% else %}
+                          <span class="bg-green-50 text-green-600 px-2.5 py-1 rounded text-xs font-bold border border-green-100 uppercase">Baja</span>
+                        {% endif %}
+                      </td>
+
+                      <td class="hidden md:table-cell px-2 py-4 text-center">
+                        {% with ticket=reporte.ticketplaga_set.first %}
+                          {% if ticket and ticket.estado %}
+                            <span class="inline-flex items-center gap-1 text-xs font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1.5 rounded-full border border-emerald-100">
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                              </svg>Resuelto
+                            </span>
+                          {% elif ticket and not ticket.estado %}
+                            <span class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 bg-blue-50 px-2.5 py-1.5 rounded-full border border-blue-100"><span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span> En Proceso</span>
+                          {% else %}
+                            <span class="inline-flex items-center gap-1 text-xs font-bold text-orange-600 bg-orange-50 px-2.5 py-1.5 rounded-full border border-orange-100">
+                              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                              </svg>Pendiente
+                            </span>
+                          {% endif %}
+                        {% endwith %}
+                      </td>
+
+                      <td class="px-4 md:px-2 py-3 md:py-4 text-right align-middle">
+                        <a href="{% url 'control_plagas:detalle_ticket' reporte.id %}" class="text-green-600 hover:text-green-800 font-bold text-xs md:text-sm inline-flex items-center gap-1 transition-colors whitespace-nowrap bg-green-50 hover:bg-green-100 px-3 md:px-4 py-2 rounded-lg md:rounded-xl">
+                          Ver Detalles<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                          </svg>
+                        </a>
+                      </td>
+                    </tr>
+                  {% empty %}
+                    <tr>
+                      <td colspan="6" class="py-12 md:py-16 text-center text-gray-500">
+                        <div class="bg-gray-50 w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center mx-auto mb-4 border border-gray-100">
+                          <svg class="w-8 h-8 md:w-10 md:h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                          </svg>
+                        </div>
+                        <p class="font-medium text-sm md:text-base text-gray-600">No has creado ningún reporte aún.</p>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+{% endblock %}

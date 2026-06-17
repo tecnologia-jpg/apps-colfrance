@@ -2,55 +2,13 @@
 
 {% block dashboard %}
   <div class="min-h-screen bg-gray-50 flex">
-    <aside class="w-64 bg-white shadow-xl h-screen sticky top-0 flex flex-col">
-      <div class="p-6 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-          <div class="bg-green-600 p-2 rounded-lg text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-            </svg>
-          </div>
-          <div>
-            <h1 class="text-green-600 font-bold text-lg leading-tight">Control de Plagas</h1>
-            <p class="text-gray-400 text-xs font-medium">Panel de Gestión</p>
-          </div>
-        </div>
-      </div>
-
-      <nav class="flex-1 p-4 space-y-2">
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all bg-green-50 text-green-600 font-semibold shadow-sm">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-          </svg>Dashboard
-        </a>
-
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-600 hover:bg-gray-50 hover:text-green-600">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>Nuevo Reporte
-        </a>
-
-        <a href="#" class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all text-gray-600 hover:bg-gray-50 hover:text-green-600">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>Ver Reportes
-        </a>
-      </nav>
-
-      <div class="p-4 border-t border-gray-100">
-        <button class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors font-medium">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
-          </svg>Cerrar Sesión
-        </button>
-      </div>
-    </aside>
+    {% include 'control_plagas/components/aside_menu.html' %}
 
     <main class="flex-1 overflow-y-auto">
       <div class="space-y-6 p-8">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">Dashboard General</h2>
-          <span class="text-sm text-gray-500 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100">Mayo 2026</span>
+          <span class="text-sm text-gray-500 bg-white px-3 py-1 rounded-full shadow-sm border border-gray-100 capitalize">{% now 'F Y' %}</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
@@ -58,7 +16,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-gray-500 text-xs font-bold uppercase tracking-wider">Total Reportes</p>
-                <p class="text-3xl font-black text-gray-900 mt-1">45</p>
+                <p class="text-3xl font-black text-gray-900 mt-1">{{ total_reportes }}</p>
               </div>
               <div class="bg-green-100 p-3 rounded-2xl text-green-600">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -72,7 +30,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-gray-500 text-xs font-bold uppercase tracking-wider">Pendientes</p>
-                <p class="text-3xl font-black text-gray-900 mt-1">12</p>
+                <p class="text-3xl font-black text-gray-900 mt-1">{{ pendientes }}</p>
               </div>
               <div class="bg-yellow-100 p-3 rounded-2xl text-yellow-600">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,7 +44,7 @@
             <div class="flex items-center justify-between">
               <div>
                 <p class="text-gray-500 text-xs font-bold uppercase tracking-wider">Completados</p>
-                <p class="text-3xl font-black text-gray-900 mt-1">33</p>
+                <p class="text-3xl font-black text-gray-900 mt-1">{{ completados }}</p>
               </div>
               <div class="bg-emerald-100 p-3 rounded-2xl text-emerald-600">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,8 +86,8 @@
               </svg>
             </div>
             <div>
-              <h3 class="text-2xl font-bold">Optimización de Control</h3>
-              <p class="text-green-100 text-sm mt-1">Los reportes han disminuido un 12% este mes gracias a las prevenciones.</p>
+              <h3 class="text-2xl font-bold">Resumen de Actividad</h3>
+              <p class="text-green-100 text-sm mt-1">Actualmente tienes {{ pendientes }} reportes pendientes por revisar en la plataforma.</p>
             </div>
           </div>
           <div class="absolute -right-20 -top-20 w-64 h-64 bg-white opacity-10 rounded-full"></div>
@@ -140,14 +98,22 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
+    // 1. Recibimos los datos JSON de Django y los parseamos a objetos JavaScript
+    // Usamos 'escapejs' para que las comillas no rompan el script
+    const dataAreas = JSON.parse('{{ json_areas|escapejs }}')
+    const dataPlagas = JSON.parse('{{ json_plagas|escapejs }}')
+    const dataSeveridad = JSON.parse('{{ json_severidad|escapejs }}')
+    
     const options = { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
     
     // Gráfico Áreas
     new Chart(document.getElementById('chartAreas'), {
       type: 'bar',
       data: {
-        labels: ['Cocina', 'Almacén', 'Jardín', 'Oficinas'],
-        datasets: [{ data: [12, 19, 3, 5], backgroundColor: '#8b5cf6', borderRadius: 8 }]
+        // Object.keys saca los nombres (ej: "Cocina", "Almacén")
+        labels: Object.keys(dataAreas),
+        // Object.values saca los números (ej: 5, 2)
+        datasets: [{ data: Object.values(dataAreas), backgroundColor: '#8b5cf6', borderRadius: 8 }]
       },
       options: options
     })
@@ -156,18 +122,31 @@
     new Chart(document.getElementById('chartPlagas'), {
       type: 'bar',
       data: {
-        labels: ['Cucarachas', 'Roedores', 'Hormigas'],
-        datasets: [{ data: [15, 8, 22], backgroundColor: '#10b981', borderRadius: 8 }]
+        labels: Object.keys(dataPlagas),
+        datasets: [{ data: Object.values(dataPlagas), backgroundColor: '#10b981', borderRadius: 8 }]
       },
       options: options
     })
     
     // Gráfico Severidad
+    // Lógica inteligente para los colores: Si dice 'Alta' será rojo, 'Media' amarillo, sino verde.
+    const coloresSeveridad = Object.keys(dataSeveridad).map((nivel) => {
+      if (nivel === 'Alta') return '#ef4444'
+      if (nivel === 'Media') return '#f59e0b'
+      return '#10b981'
+    })
+    
     new Chart(document.getElementById('chartSeveridad'), {
       type: 'doughnut',
       data: {
-        labels: ['Alta', 'Media', 'Baja'],
-        datasets: [{ data: [10, 20, 15], backgroundColor: ['#ef4444', '#f59e0b', '#10b981'], borderPadding: 0 }]
+        labels: Object.keys(dataSeveridad),
+        datasets: [
+          {
+            data: Object.values(dataSeveridad),
+            backgroundColor: coloresSeveridad,
+            borderPadding: 0
+          }
+        ]
       },
       options: { ...options, plugins: { legend: { display: true, position: 'bottom' } } }
     })
